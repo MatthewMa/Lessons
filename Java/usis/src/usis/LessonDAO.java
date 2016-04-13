@@ -157,7 +157,7 @@ public class LessonDAO {
 				ResultSet screenResultSet = screenStatement.executeQuery(screenSQL);
 				List<String> screenList = new ArrayList<String>();
 				while (screenResultSet.next()) {
-					screenList.add(Settings.BASE_URL+"S"+screenResultSet.getInt("id"));
+					screenList.add(Settings.BASE_URL+id+"/screens/"+""+screenResultSet.getInt("id"));
 				}
 				Util.closeConnection(null, screenStatement, screenResultSet);
 				lesson.setScreenList(screenList);
@@ -308,7 +308,7 @@ public class LessonDAO {
 		return screen;
 	}
 	
-	public static ScreenTO getScreenWithId(String id) {
+	public static ScreenTO getScreenWithId(String id,String lessonId) {
 
 		ScreenTO screen = new ScreenTO();
 		try {
@@ -333,7 +333,7 @@ public class LessonDAO {
 					// System.out.println("imageSQL:"+imageSQL);
 					ResultSet imagesResultset = imagesStatement.executeQuery(imageSQL);
 					while (imagesResultset.next()) {
-						imageList.add(Settings.BASE_URL+"I"+imagesResultset.getInt("id"));
+						imageList.add(Settings.BASE_URL+lessonId+"/screens/"+id+"/images/"+imagesResultset.getInt("id"));
 					}
 					Util.closeConnection(null, imagesStatement, imagesResultset);
 
@@ -344,7 +344,7 @@ public class LessonDAO {
 					// System.out.println("questionSQL:"+questionSQL);
 					ResultSet questionResultset = questionStatement.executeQuery(questionSQL);
 					while (questionResultset.next()) {
-						questionList.add(Settings.BASE_URL+"O"+questionResultset.getInt("id"));
+						questionList.add(Settings.BASE_URL+lessonId+"/screens/"+id+"/options/"+questionResultset.getInt("id"));
 					}
 					screen.setQuestions(questionList);
 					screen.setImages(imageList);
@@ -382,7 +382,6 @@ public class LessonDAO {
 		return lessonList;
 
 	}
-	
 	public static List<String> getLessonURLList() {
 
 		List<String> lessonList = new ArrayList<String>();
@@ -391,7 +390,7 @@ public class LessonDAO {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from lessons order by id");
 			while (resultSet.next()) {
-				lessonList.add(Settings.BASE_URL+"L"+resultSet.getInt("id"));
+				lessonList.add(Settings.BASE_URL+""+resultSet.getInt("id"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -33,7 +33,7 @@ public class LessonService {
 		return LessonDAO.getLessons();
 	}
 	*/
-	
+	/*
 	@GET @Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
 	public Lessons getLessonById(@Context HttpServletRequest request,@PathParam("id") String id) {
@@ -42,6 +42,7 @@ public class LessonService {
 		LOGGER.info("IP:" + ip);
 		return LessonDAO.getLessonById(id);
 	}
+	*/
 	@GET 
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
 	public List<String> getLessonURLList(@Context HttpServletRequest request) {
@@ -51,8 +52,7 @@ public class LessonService {
 		return LessonDAO.getLessonURLList();
 	}
 	
-	
-	@GET @Path("L{id}")
+	@GET @Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
 	public LessonScreenTO getLessonWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
@@ -86,16 +86,17 @@ public class LessonService {
 		LOGGER.info("IP:" + ip);
 		return LessonDAO.getOneScreenById(id);
 	}
-	@GET @Path("S{id}")
+	@GET @Path("{lessonid}/screens/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public ScreenTO getScreenWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
+	public ScreenTO getScreenWithId(@Context HttpServletRequest request,@PathParam("id") String id,@PathParam("lessonid") String lessonid) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
-		return LessonDAO.getScreenWithId(id);
+		
+		return LessonDAO.getScreenWithId(id,lessonid);
 	}
 	
-	@GET @Path("I{id}")
+	@GET @Path("{lessonid}/screens/{screenid}/images/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
 	public ImageTO getImageWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
@@ -104,7 +105,7 @@ public class LessonService {
 		return ImageDAO.getImageWithId(id);
 	}
 	
-	@GET @Path("O{id}")
+	@GET @Path("{lessonid}/screens/{screenid}/options/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
 	public QuestionTO getQuestionWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
