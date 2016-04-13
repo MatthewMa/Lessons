@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonBasket.iOS", "iOS\LessonBasket.iOS.csproj", "{85924AAA-D902-47A5-9400-BADE1341E9F4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "LessonBasket", "LessonBasket\LessonBasket.shproj", "{962CA6B1-77B0-4B9D-87A8-0163DF3882F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonBasket.Android", "LessonBasket.Android\LessonBasket.Android.csproj", "{87BD2869-2043-4177-A440-2C73EFC7FB03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Debug|iPhone.Build.0 = Debug|iPhone
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Release|iPhone.ActiveCfg = Release|iPhone
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Release|iPhone.Build.0 = Release|iPhone
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{85924AAA-D902-47A5-9400-BADE1341E9F4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Release|iPhone.Build.0 = Release|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{87BD2869-2043-4177-A440-2C73EFC7FB03}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
