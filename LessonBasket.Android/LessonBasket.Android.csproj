@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{87BD2869-2043-4177-A440-2C73EFC7FB03}</ProjectGuid>
+    <ProjectGuid>{C4333605-5970-45A3-BFE7-0962C22E7A78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>LessonBasket.Android</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
