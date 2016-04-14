@@ -3,6 +3,8 @@ package usis;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import to.QuestionTO;
 
@@ -28,6 +30,32 @@ public class QuestionDAO {
 		}
 		
 		return questionTO;
+		
+	} 
+	
+	public static List<Questions> getListOfOptionsByScreenId(String screenId){
+		List<Questions> questionList = new ArrayList<Questions>();
+		try {
+			Connection connection = Util.getConnection();
+			
+			Statement questionStatement = connection.createStatement();
+			String questionSQL = "select * from questions where screen_id=" + screenId
+					+ " order by q_order ";
+			// System.out.println("questionSQL:"+questionSQL);
+			ResultSet questionResultset = questionStatement.executeQuery(questionSQL);
+			while (questionResultset.next()) {
+				Questions question = new Questions();
+				question.setTitle(questionResultset.getString("title"));
+				question.setDetail(questionResultset.getString("detail"));
+				questionList.add(question);
+			}
+
+			Util.closeConnection(null, questionStatement, questionResultset);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return questionList;
 		
 	} 
 }

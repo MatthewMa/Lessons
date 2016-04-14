@@ -96,6 +96,24 @@ public class LessonService {
 		return LessonDAO.getScreenWithId(id,lessonid);
 	}
 	
+	@GET @Path("/list")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<Lesson> getListOfLessons(@Context HttpServletRequest request,@PathParam("id") String id,@PathParam("lessonid") String lessonid) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getLessons();
+	}
+	
+	@GET @Path("{lessonid}/screens/list")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<Screen> getListOfScreens(@Context HttpServletRequest request,@PathParam("lessonid") String lessonid) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getScreensLessonById(lessonid);
+	}
+	
 	@GET @Path("{lessonid}/screens/{screenid}/images/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
 	public ImageTO getImageWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
@@ -103,6 +121,16 @@ public class LessonService {
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
 		return ImageDAO.getImageWithId(id);
+	}
+	
+	
+	@GET @Path("{lessonid}/screens/{screenid}/images/list")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<Images> getListOfImagesByScreenId(@Context HttpServletRequest request,@PathParam("screenid") String screenId) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return ImageDAO.getListofImages(screenId);
 	}
 	
 	@GET @Path("{lessonid}/screens/{screenid}/options/{id}")
@@ -113,5 +141,15 @@ public class LessonService {
 		
 		LOGGER.info("IP:" + ip);
 		return QuestionDAO.getQuestionWithId(id);
+	}
+	
+	@GET @Path("{lessonid}/screens/{screenid}/options/list")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<Questions> getListOfOptionsByScreenId(@Context HttpServletRequest request,@PathParam("screenid") String screenId) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		
+		LOGGER.info("IP:" + ip);
+		return QuestionDAO.getListOfOptionsByScreenId(screenId);
 	}
 }
