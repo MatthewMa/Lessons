@@ -16,10 +16,13 @@ namespace LessonBasketDemo
 	[Activity (Label = "LessonBasketDemo", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]			
 	public class LandingActivity : BaseActivity
 	{
-		
+		private Button btn_start;
+
 		public override void initListner ()
 		{
-			
+			btn_start.Click += delegate(object sender, EventArgs e) {
+				enterLoginActivity ();	
+			};
 		}
 
 		public override void initData ()
@@ -33,6 +36,7 @@ namespace LessonBasketDemo
 			handler.PostDelayed (delegate() {
 				enterLoginActivity ();
 			}, 2000);
+			btn_start = FindViewById<Button> (Resource.Id.btn_start);
 		}
 
 		/// <summary>
