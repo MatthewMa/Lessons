@@ -98,6 +98,7 @@
     <Compile Include="Utilities\EasyLayout.cs" />
     <Compile Include="AbcViewController.cs" />
     <Compile Include="Utilities\UIConstants.cs" />
+    <Compile Include="LandingViewController.cs" />
   </ItemGroup>
   <Import Project="..\LessonBasket\LessonBasket.projitems" Label="Shared" Condition="Exists('..\LessonBasket\LessonBasket.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -111,5 +112,6 @@
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\1024x768.png" />
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\1024x748.png" />
     <BundleResource Include="Resources\lesson_basket_logo.png" />
+    <BundleResource Include="Resources\parade.png" />
   </ItemGroup>
 </Project>

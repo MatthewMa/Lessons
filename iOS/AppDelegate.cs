@@ -23,8 +23,8 @@ namespace LessonBasket.iOS
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            var loginViewController = new LoginViewController();
-            var navigationController = new UINavigationController(loginViewController);
+            var landingViewController = new LandingViewController();
+            var navigationController = new UINavigationController(landingViewController);
 
             Window.RootViewController = navigationController;
 
