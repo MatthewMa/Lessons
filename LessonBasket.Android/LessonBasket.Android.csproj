@@ -18,8 +18,6 @@
     <XamarinInsightsApiKey>4c890178752f3acc44929cc32889aaecd33af9dc</XamarinInsightsApiKey>
     <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
     <CodePage>65001</CodePage>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,7 +58,7 @@
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.20.0.0.2\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Vitamio.Android.Binding">
-      <HintPath>Components\VitamioBinding-1.5\lib\android\Xamarin.Vitamio.Android.Binding.dll</HintPath>
+      <HintPath>..\Components\VitamioBinding-1.5\lib\android\Xamarin.Vitamio.Android.Binding.dll</HintPath>
     </Reference>
     <Reference Include="NineOldAndroids">
       <HintPath>..\packages\NineOldAndroids.2.4.0\lib\MonoAndroid23\NineOldAndroids.dll</HintPath>
@@ -115,7 +113,6 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
-    <None Include="LessonBasket.sln" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
