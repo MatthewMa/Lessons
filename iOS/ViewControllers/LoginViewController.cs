@@ -20,9 +20,9 @@ namespace LessonBasket.iOS
             var logo = new UIImageView();
             View.AddSubview(logo);
             logo.Image = UIImage.FromBundle("lesson_basket_logo.png");
-            logo.Layer.BorderColor = new CGColor(255, 255, 255);
-            logo.Layer.BorderWidth = 1f;
-            logo.Layer.CornerRadius = 25f;
+//            logo.Layer.BorderColor = new CGColor(255, 255, 255);
+//            logo.Layer.BorderWidth = 1f;
+//            logo.Layer.CornerRadius = 25f;
 
             var username = new UITextField
             {
