@@ -1,0 +1,114 @@
+ {
+    "id": 1,
+    "description": "Soccer lessons",
+    "screenCount": 5,
+    "screens": [
+		{
+        "id": 1,
+        "type": "video",
+        "text": null,
+        "question": null,
+        "choices": [],
+        "video_url": "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
+        "images": [],
+        "audio_url": null
+      },
+      {
+        "id": 2,
+        "type": "audio_question_image",
+        "text": null,
+        "question": "The weight of a gopher is approximately 230 grams or 0.5 lbs. If the head of a gopher is 20% of its body weight, how many grams does its head weigh?",
+        "choices": [
+          {
+            "detail": null,
+            "title": "64 grams"
+          },
+          {
+            "detail": null,
+            "title": "54 grams"
+          },
+          {
+            "detail": null,
+            "title": "44 grams"
+          },
+          {
+            "detail": null,
+            "title": "46 grams"
+          },
+          {
+            "detail": null,
+            "title": "39 grams"
+          }
+        ],
+        "video_url": null,
+        "images": [
+          {
+            "url": "http://mgl.usask.ca/usis/images/s2.jpg",
+            "title": " "
+          }
+        ],
+        "audio_url": "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/56/73692776.5594JH%20Q2.mp3"
+      },
+      {
+        "id": 3,
+        "type": "audio_question",
+        "text": null,
+        "question": "What First Nation does this teacher come from?",
+        "choices": [
+          {
+            "detail": null,
+            "title": "Thunder Horton's"
+          },
+          {
+            "detail": null,
+            "title": "Sweetgrass"
+          },
+          {
+            "detail": null,
+            "title": "Thunderchild"
+          },
+          {
+            "detail": null,
+            "title": "Poundmaker"
+          },
+          {
+            "detail": null,
+            "title": "Starbucks"
+          }
+        ],
+        "video_url": null,
+        "images": [],
+        "audio_url": "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3"
+      },
+      {
+        "id": 4,
+        "type": "audio_edittext",
+        "text": "If Canada could no longer rely upon domestic cattle, pig, and chicken production to meet it's protein consumption needs, what would you rather eat? Insects or gophers? In your essay, provide at least two reasons for your answer.",
+        "question": null,
+        "choices": [],
+        "video_url": null,
+        "images": [
+          {
+            "url": "http://mgl.usask.ca/usis/images/s4_1.jpg",
+            "title": "Lollipop with ants"
+          },
+          {
+            "url": "http://mgl.usask.ca/usis/images/s4_2.jpg",
+            "title": "Gopher"
+          }
+        ],
+        "audio_url": "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/57/80793107.9191JH%20Q.3.mp3"
+      },
+	  {
+        "id": 5,
+        "type": "audio_text",
+        "text": "Some people feel that gopher consumption is wrong. However, others feel that eating cows, pigs, and chickens is unsustainable. Entomophagy, or eating insects has been proposed to supply human protein needs. Could it be  that gophers supply North American's protein needs? Read the following two articles and then give your reason on whether gophers should be eaten in Canada or not.",
+        "question": null,
+        "choices": [],
+        "video_url": "",
+        "images": [],
+        "audio_url": "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/58/78841737.6597gophers%20or%20not.mp3"
+      }
+    ],
+    "title": "Jason Horse, Cree Soccer"
+  }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/base_bg">
+    <LinearLayout
+        style="@style/titlestyle">
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Lesson Basket"
+            android:textSize="20sp"
+            android:textColor="@android:color/background_light"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_title"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_setting"
+                android:id="@+id/btn_setting"
+                android:layout_toLeftOf="@+id/btn_exit"
+                android:layout_marginRight="5dp" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_exit"
+                android:id="@+id/btn_exit"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+    </LinearLayout>
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:numColumns="2"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="30dp"
+        android:id="@+id/gv_index"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:columnWidth="130dp" />
+    <TextView
+        style="@style/subtitle"
+        android:text="Recommended Lessons" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/vv_advertiser" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#a000"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:id="@+id/tv_des" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:id="@+id/ll_container"
+                android:layout_marginBottom="0dp" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

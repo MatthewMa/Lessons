@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:showDividers="none"
+    android:weightSum="100">
+    <include
+        layout="@layout/audio_player" />
+    <TextView
+        android:text="Default Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="60"
+        android:id="@+id/displayText"
+        android:textSize="18dp"
+        android:scrollbars="vertical"
+        android:overScrollMode="ifContentScrolls"
+        android:verticalScrollbarPosition="defaultPosition"
+        android:fadeScrollbars="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="5dp" />
+    <EditText
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_weight="20"
+        android:id="@+id/editText1"
+        android:text="Input"
+        android:typeface="sans"
+        android:background="#ff212121"
+        android:textColor="#ff76ff03"
+        android:textSize="18dp" />
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/base_bg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logo" />
+        <TextView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="An interactive education of First Nation History,through the voices of the people!"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:gravity="center_horizontal" />
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Checking Updates Now......"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/tv_version"
+        android:text="Version: 1.0"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"
+        android:layout_margin="5dp" />
+</RelativeLayout>

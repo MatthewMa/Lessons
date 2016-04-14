@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="100"
+    android:paddingRight="15dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="10dp"
+    android:background="@drawable/base_bg">
+    <LinearLayout
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/navigationTxt"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SUBMIT"
+            android:id="@+id/btn_submit"
+            android:gravity="center"
+            android:background="@drawable/btn_green_selector"
+            android:textColor="@android:color/black"
+            android:visibility="invisible" />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_weight="80"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="0.0dp"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:overScrollMode="ifContentScrolls"
+        android:verticalScrollbarPosition="right"
+        android:fadeScrollbars="true" />
+    <LinearLayout
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <Button
+            style="@style/PreviousStyle"
+            android:layout_gravity="center_vertical" />
+        <ImageView
+            android:id="@+id/iv_vision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/vision_anim" />
+        <Button
+            style="@style/NextStyle"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</LinearLayout>

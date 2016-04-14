@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/landingscape"
+    android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/background_light"
+        android:text="Lesson Basket" />
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="An interactive education of First Nation History,through the voices of the people!"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:gravity="center_horizontal" />
+</LinearLayout>
