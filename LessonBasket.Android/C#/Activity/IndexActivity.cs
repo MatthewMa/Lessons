@@ -21,8 +21,7 @@ namespace LessonBasketDemo
 		private string email;
 		private TextView tv_title;
 		private GridView gv;
-		private TextView tv_des;
-		private LinearLayout ll;
+		private LinearLayout ll_loading;
 		private ImageButton btn_setting;
 		private ImageButton btn_exit;
 		private IO.Vov.Vitamio.Widget.VideoView vv;
@@ -92,6 +91,7 @@ namespace LessonBasketDemo
 			vv.SetVideoURI (Android.Net.Uri.Parse (Constants.VIDEO_URL));
 			vv.RequestFocus ();
 			vv.Prepared += delegate(object sender, IO.Vov.Vitamio.MediaPlayer.PreparedEventArgs e) {
+				ll_loading.Visibility = ViewStates.Gone;
 				e.P0.SetPlaybackSpeed (1.0f);
 				e.P0.Looping = false;
 				vv.Start ();
@@ -108,6 +108,8 @@ namespace LessonBasketDemo
 			btn_setting = FindViewById<ImageButton> (Resource.Id.btn_setting);
 			btn_exit = FindViewById<ImageButton> (Resource.Id.btn_exit);
 			vv = FindViewById<IO.Vov.Vitamio.Widget.VideoView> (Resource.Id.video_view);
+			ll_loading = FindViewById<LinearLayout> (Resource.Id.ll_loading);
+			ll_loading.Visibility = ViewStates.Visible;
 		}
 
 		public override int getLayoutResource ()
@@ -130,6 +132,12 @@ namespace LessonBasketDemo
 		public override void OnBackPressed ()
 		{
 			//back pressed
+		}
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			ll_loading.Visibility = ViewStates.Visible;
 		}
 	}
 }

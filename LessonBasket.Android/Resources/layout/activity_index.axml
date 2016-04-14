@@ -7,7 +7,7 @@
     <LinearLayout
         style="@style/titlestyle">
         <TextView
-            android:layout_width="400dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome to Lesson Basket"
             android:textSize="20sp"
@@ -15,11 +15,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:id="@+id/tv_title"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
             android:singleLine="true" />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -99,5 +94,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true" />
+        <LinearLayout
+            android:id="@+id/ll_loading"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@android:color/black">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:text="NOW LOADING......"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
     </FrameLayout>
 </LinearLayout>
