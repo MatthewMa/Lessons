@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="NineOldAndroids" is-shell="true">
+  <name>Nine Old Androids</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>http://xamarin.com/</publisher-url>
+  <src-url>https://github.com/JakeWharton/NineOldAndroids</src-url>
+  <version>2.4.0</version>
+  <summary>Android library for using the Honeycomb animation API on all versions of Android.</summary>
+  <packages>
+    <package id="NineOldAndroids" version="2.4.0" framework="android" />
+  </packages>
+  <samples>
+    <sample id="NineOldAndroidsSample">
+      <name>Android Sample</name>
+      <summary>Android Sample</summary>
+    </sample>
+  </samples>
+</component>
