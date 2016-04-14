@@ -57,9 +57,6 @@
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.20.0.0.2\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Vitamio.Android.Binding">
-      <HintPath>..\Components\VitamioBinding-1.5\lib\android\Xamarin.Vitamio.Android.Binding.dll</HintPath>
-    </Reference>
     <Reference Include="NineOldAndroids">
       <HintPath>..\packages\NineOldAndroids.2.4.0\lib\MonoAndroid23\NineOldAndroids.dll</HintPath>
     </Reference>
@@ -71,6 +68,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Json" />
     <Reference Include="System.Net" />
+    <Reference Include="Xamarin.Vitamio.Android.Binding">
+      <HintPath>..\Components\VitamioBinding-1.5\lib\android\Xamarin.Vitamio.Android.Binding.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />

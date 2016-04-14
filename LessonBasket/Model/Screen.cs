@@ -14,7 +14,6 @@ namespace LessonBasket
 		public string video_url { get; set;}
 		public IList<String> questions { get; set;} //TODO change to options when the json is changed
 
-
 		public Screen ()
 		{
 		}
