@@ -48,7 +48,7 @@ namespace LessonBasket.iOS
             var loginButton = new UIButton(UIButtonType.System)
             {
                 BackgroundColor = UIColor.FromHSB(UIConstants.BackgroundColorHue + 0.08f, UIConstants.BackgroundColorSaturation + 0.1f, UIConstants.BackgroundColorBrightness),
-                Font = UIFont.FromName("Helvetica-Bold", UIConstants.NormalFontSize),
+                Font = UIFont.BoldSystemFontOfSize(UIConstants.NormalFontSize),
             };
             View.AddSubview(loginButton);
             loginButton.SetTitle("Login", UIControlState.Normal);
@@ -56,13 +56,13 @@ namespace LessonBasket.iOS
             loginButton.Layer.CornerRadius = UIConstants.CornerRadius;
             loginButton.TouchUpInside += (sender, e) =>
             {
-                NavigationController.PushViewController(new AbcViewController(), true);
+                NavigationController.PushViewController(new TabViewController(), true);
             };
 
             var signUpButton = new UIButton(UIButtonType.System)
             {
                 BackgroundColor = UIColor.White,
-                Font = UIFont.FromName("Helvetica-Bold", UIConstants.NormalFontSize),
+                Font = UIFont.BoldSystemFontOfSize(UIConstants.NormalFontSize),
             };
             View.AddSubview(signUpButton);
             signUpButton.SetTitle("Sign Up", UIControlState.Normal);

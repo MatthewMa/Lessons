@@ -13,10 +13,10 @@ namespace LessonBasket.iOS
         public const float HorizontalPad = 30;
         public const float VerticalPad = 30;
 
-        public const float ControlsHeight = 40;
+        public const float ControlsHeight = 60;
         public const float MaximumControlsWidth = 400;
 
-        public const float NormalFontSize = 16;
+        public const float NormalFontSize = 20;
 
         public const float BackgroundColorHue = 0.553f;
         public const float BackgroundColorSaturation = 0.650f;

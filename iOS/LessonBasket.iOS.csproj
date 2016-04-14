@@ -94,16 +94,21 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="LoginViewController.cs" />
     <Compile Include="Utilities\EasyLayout.cs" />
-    <Compile Include="AbcViewController.cs" />
     <Compile Include="Utilities\UIConstants.cs" />
-    <Compile Include="LandingViewController.cs" />
+    <Compile Include="ViewControllers\LandingViewController.cs" />
+    <Compile Include="ViewControllers\LoginViewController.cs" />
+    <Compile Include="ViewControllers\TabViewController.cs" />
+    <Compile Include="ViewControllers\LessonsViewController.cs" />
+    <Compile Include="ViewControllers\AccountViewController.cs" />
+    <Compile Include="ViewControllers\AdminViewController.cs" />
+    <Compile Include="ViewControllers\SettingsViewController.cs" />
   </ItemGroup>
   <Import Project="..\LessonBasket\LessonBasket.projitems" Label="Shared" Condition="Exists('..\LessonBasket\LessonBasket.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Utilities\" />
+    <Folder Include="ViewControllers\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\2048x1536.png" />
@@ -113,5 +118,9 @@
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\1024x748.png" />
     <BundleResource Include="Resources\lesson_basket_logo.png" />
     <BundleResource Include="Resources\parade.png" />
+    <BundleResource Include="Resources\book%402x.png" />
+    <BundleResource Include="Resources\computer%402x.png" />
+    <BundleResource Include="Resources\preferences%402x.png" />
+    <BundleResource Include="Resources\user%402x.png" />
   </ItemGroup>
 </Project>

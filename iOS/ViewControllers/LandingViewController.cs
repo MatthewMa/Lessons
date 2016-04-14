@@ -18,7 +18,7 @@ namespace LessonBasket.iOS
             var button = new UIButton(UIButtonType.System)
             {
                 BackgroundColor = UIColor.FromHSB(UIConstants.BackgroundColorHue, UIConstants.BackgroundColorSaturation, UIConstants.BackgroundColorBrightness),
-                Font = UIFont.BoldSystemFontOfSize(20),
+                Font = UIFont.BoldSystemFontOfSize(UIConstants.NormalFontSize),
             };
             View.AddSubview(button);
             button.SetTitle("GET STARTED", UIControlState.Normal);
