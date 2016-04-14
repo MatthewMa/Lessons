@@ -5,6 +5,7 @@ namespace LessonBasket
 {
 	public class Lesson
 	{
+
 		public int id { get; set;}
 		public string description { get; set;}
 		public IList<string> screenList { get; set;}
