@@ -16,17 +16,16 @@ using System.Threading;
 namespace LessonBasketDemo
 {
 	[Activity (Label = "LessonBasketDemo", ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]			
-	public class IndexActivity : BaseActivity,ViewPager.IOnTouchListener
+	public class IndexActivity : BaseActivity
 	{
-		private MyIndexHandler handler;
 		private string email;
 		private TextView tv_title;
 		private GridView gv;
 		private TextView tv_des;
 		private LinearLayout ll;
-		private int previousPosition = 0;
 		private ImageButton btn_setting;
 		private ImageButton btn_exit;
+		private IO.Vov.Vitamio.Widget.VideoView vv;
 		//json string
 		public readonly string[] titles = {
 			"Personal Account",
@@ -44,25 +43,9 @@ namespace LessonBasketDemo
 			Resource.Drawable.pencil,
 			Resource.Drawable.mouse
 		};
-		public readonly int[] lessonresources = {
-			Resource.Drawable.lesson_1,
-			Resource.Drawable.lesson_2,
-			Resource.Drawable.lesson_3,
-			Resource.Drawable.lesson_4,
-			Resource.Drawable.lesson_5
-		};
-		public readonly string[] description = { 
-			"Geiafitness now 25% OFF",
-			"Quick Fix 245",
-			"Fruit and Vegatable carving",
-			"Fitness and Fun",
-			"HC Varsity"
-		};
-		private ViewPager vp;
 
 		public override void initListner ()
 		{
-			vp.SetOnTouchListener (this);
 			//set item  listener for gridview
 			gv.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs e) {
 				switch (e.Position) {
@@ -93,6 +76,7 @@ namespace LessonBasketDemo
 		{
 			Intent intent = new Intent (this, typeof(HomeActivity));
 			StartActivity (intent);
+
 		}
 
 		public override void initData ()
@@ -104,46 +88,26 @@ namespace LessonBasketDemo
 			}
 			MyGridViewAdapter my = new MyGridViewAdapter (titles, resources, this);
 			gv.Adapter = my;
-			//set adapter for viewpager
-			MyPagerAdapter mp = new MyPagerAdapter (lessonresources);
-			vp.Adapter = mp;
-			//set current position
-			vp.SetCurrentItem (lessonresources.Length * 10000, true);
-			vp.PageSelected += delegate(object sender, ViewPager.PageSelectedEventArgs e) {
-				int p = (e.Position % lessonresources.Length);
-				tv_des.Text = description [p];
-				ll.GetChildAt (p).Enabled = true;
-				ll.GetChildAt (previousPosition).Enabled = false;
-				previousPosition = p;
+			//set videoview
+			vv.SetVideoURI (Android.Net.Uri.Parse (Constants.VIDEO_URL));
+			vv.RequestFocus ();
+			vv.Prepared += delegate(object sender, IO.Vov.Vitamio.MediaPlayer.PreparedEventArgs e) {
+				e.P0.SetPlaybackSpeed (1.0f);
+				e.P0.Looping = false;
+				vv.Start ();
 			};
-			tv_des.Text = description [0];
-			handler = new MyIndexHandler (vp);
-			handler.SendEmptyMessageDelayed (0, 2000);
-
+			vv.Completion += delegate(object sender, IO.Vov.Vitamio.MediaPlayer.CompletionEventArgs e) {
+				e.P0.Stop ();
+			};
 		}
 
 		public override void initView ()
 		{
 			tv_title = FindViewById<TextView> (Resource.Id.tv_title);
 			gv = FindViewById<GridView> (Resource.Id.gv_index);
-			vp = FindViewById<ViewPager> (Resource.Id.vv_advertiser);
-			tv_des = FindViewById<TextView> (Resource.Id.tv_des);
-			ll = FindViewById<LinearLayout> (Resource.Id.ll_container);
 			btn_setting = FindViewById<ImageButton> (Resource.Id.btn_setting);
 			btn_exit = FindViewById<ImageButton> (Resource.Id.btn_exit);
-			//dynamically create the circle image
-			for (int i = 0; i < lessonresources.Length; i++) {
-				ImageView iv = new ImageView (this);
-				iv.SetImageResource (Resource.Drawable.selector_point);
-				//set left margin
-				if (i > 0) {
-					LinearLayout.LayoutParams param = new LinearLayout.LayoutParams (LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
-					param.LeftMargin = 6;
-					iv.Enabled = false;
-					iv.LayoutParameters = param;
-				}
-				ll.AddView (iv);
-			}
+			vv = FindViewById<IO.Vov.Vitamio.Widget.VideoView> (Resource.Id.video_view);
 		}
 
 		public override int getLayoutResource ()
@@ -163,44 +127,9 @@ namespace LessonBasketDemo
 			}
 		}
 
-		//Touch Listener
-		public bool OnTouch (View v, MotionEvent e)
-		{
-			switch (e.Action) {
-
-			case MotionEventActions.Down:
-				//stop send message
-				handler.RemoveCallbacksAndMessages (null);
-				break;
-			case MotionEventActions.Up:
-				handler.SendEmptyMessageDelayed (0, 2000);
-				break;
-			}
-			return false;
-		}
-
 		public override void OnBackPressed ()
 		{
 			//back pressed
-		}
-	}
-
-	public class MyIndexHandler:Handler
-	{
-		private ViewPager mvp;
-
-		public MyIndexHandler (ViewPager vp)
-		{
-			this.mvp = vp;
-		}
-
-		public override void HandleMessage (Message msg)
-		{
-			//update next page automatically
-			int currentItem = mvp.CurrentItem;
-			currentItem++;
-			mvp.SetCurrentItem (currentItem, true);
-			SendEmptyMessageDelayed (0, 2000);
 		}
 	}
 }

@@ -17,10 +17,13 @@ namespace LessonBasketDemo
 	public class LandingActivity : BaseActivity
 	{
 		private Button btn_start;
+		private Handler handler = new Handler ();
 
 		public override void initListner ()
 		{
 			btn_start.Click += delegate(object sender, EventArgs e) {
+
+				handler.RemoveCallbacksAndMessages (null);
 				enterLoginActivity ();	
 			};
 		}
@@ -32,7 +35,6 @@ namespace LessonBasketDemo
 
 		public override void initView ()
 		{
-			Handler handler = new Handler ();
 			handler.PostDelayed (delegate() {
 				enterLoginActivity ();
 			}, 2000);
