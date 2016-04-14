@@ -110,5 +110,6 @@
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\2732x2048.png" />
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\1024x768.png" />
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\1024x748.png" />
+    <BundleResource Include="Resources\lesson_basket_logo.png" />
   </ItemGroup>
 </Project>
