@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{7D96C411-E722-4C82-A4AB-8C0D8EC73328}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LessonBasketDemo</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AssemblyName>VedioTutorial</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <XamarinInsightsApiKey>4c890178752f3acc44929cc32889aaecd33af9dc</XamarinInsightsApiKey>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <CodePage>65001</CodePage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.11.2\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v13">
+      <HintPath>..\packages\Xamarin.Android.Support.v13.20.0.0.4\lib\MonoAndroid32\Xamarin.Android.Support.v13.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.20.0.0.4\lib\MonoAndroid32\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.20.0.0.2\lib\MonoAndroid10\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Vitamio.Android.Binding">
+      <HintPath>..\Components\VitamioBinding-1.5\lib\android\Xamarin.Vitamio.Android.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="NineOldAndroids">
+      <HintPath>..\packages\NineOldAndroids.2.4.0\lib\MonoAndroid23\NineOldAndroids.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Json" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="C#\Activity\BaseActivity.cs" />
+    <Compile Include="C#\Activity\HomeActivity.cs" />
+    <Compile Include="C#\Activity\SplashActivity.cs" />
+    <Compile Include="C#\UIOperation\UiOperation.cs" />
+    <Compile Include="C#\Utils\Utils.cs" />
+    <Compile Include="C#\Fragment\BaseFragment.cs" />
+    <Compile Include="C#\Fragment\VideoListFragment.cs" />
+    <Compile Include="C#\Adapter\MainAdapter.cs" />
+    <Compile Include="C#\Adapter\VideoListAdapter.cs" />
+    <Compile Include="C#\Bean\VideoItem.cs" />
+    <Compile Include="C#\Interfaces\Constants.cs" />
+    <Compile Include="C#\Interfaces\Keys.cs" />
+    <Compile Include="C#\Activity\VideoPlayerActivity.cs" />
+    <Compile Include="C#\BroadcastReceiver\BatteryChangedReceiver.cs" />
+    <Compile Include="C#\Adapter\OnlineVideoAdapter.cs" />
+    <Compile Include="C#\Bean\OnlineVideoItem.cs" />
+    <Compile Include="C#\Activity\LoginActivity.cs" />
+    <Compile Include="C#\Utils\DialogFactory.cs" />
+    <Compile Include="C#\Activity\IndexActivity.cs" />
+    <Compile Include="C#\Adapter\MyGridViewAdapter.cs" />
+    <Compile Include="C#\Adapter\MyPagerAdapter.cs" />
+    <Compile Include="C#\Fragment\DownListFragment.cs" />
+    <Compile Include="C#\JSONObject\Lecture.cs" />
+    <Compile Include="C#\JSONObject\Screen.cs" />
+    <Compile Include="C#\JSONObject\ScreenImage.cs" />
+    <Compile Include="C#\Utils\MyHandler.cs" />
+    <Compile Include="C#\Fragment\AudioEditTextFragment.cs" />
+    <Compile Include="C#\Fragment\AudioQuestionFragment.cs" />
+    <Compile Include="C#\Fragment\AudioQuestionImageFragment.cs" />
+    <Compile Include="C#\Fragment\AudioTextFragment.cs" />
+    <Compile Include="C#\Activity\QuestionnairActivity.cs" />
+    <Compile Include="C#\Activity\LandingActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\layout\activity_home.axml" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon_mainlauncher.jpg" />
+    <AndroidResource Include="Resources\layout\activity_splash.axml" />
+    <AndroidResource Include="Resources\drawable\activity_general.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_01.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_02.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_03.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_04.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_05.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_06.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_07.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_08.png" />
+    <AndroidResource Include="Resources\drawable\audio_anim_09.png" />
+    <AndroidResource Include="Resources\drawable\audio_seek_thumb.png" />
+    <AndroidResource Include="Resources\drawable\base_bg.png" />
+    <AndroidResource Include="Resources\drawable\base_left_button_normal.png" />
+    <AndroidResource Include="Resources\drawable\base_left_button_pressed.png" />
+    <AndroidResource Include="Resources\drawable\base_titlebar_bg.png" />
+    <AndroidResource Include="Resources\drawable\bg_player_bottom_control.9.png" />
+    <AndroidResource Include="Resources\drawable\bg_player_bottom_seekbar.9.png" />
+    <AndroidResource Include="Resources\drawable\bg_player_loading_background.9.png" />
+    <AndroidResource Include="Resources\drawable\bg_player_status.9.png" />
+    <AndroidResource Include="Resources\drawable\bg_player_top_control.9.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_next_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_next_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_pause_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_pause_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_play_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_play_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_pre_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_audio_pre_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_default_screen_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_default_screen_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_exit.png" />
+    <AndroidResource Include="Resources\drawable\btn_exit_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_full_screen_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_full_screen_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_music_list_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_music_list_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_next_gray.png" />
+    <AndroidResource Include="Resources\drawable\btn_next_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_next_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_pause_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_pause_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_playmode_all_repeat_normal.png.png" />
+    <AndroidResource Include="Resources\drawable\btn_playmode_all_repeat_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_playmode_random_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_playmode_random_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_playmode_singlerepeat_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_playmode_singlerepeat_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_play_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_play_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_pre_gray.png" />
+    <AndroidResource Include="Resources\drawable\btn_pre_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_pre_pressed.png" />
+    <AndroidResource Include="Resources\drawable\btn_voice_normal.png" />
+    <AndroidResource Include="Resources\drawable\btn_voice_pressed.png" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\drawable\icon_notification.png" />
+    <AndroidResource Include="Resources\drawable\icon_notification_next.png" />
+    <AndroidResource Include="Resources\drawable\icon_notification_pre.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_0.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_10.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_100.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_20.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_40.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_60.png" />
+    <AndroidResource Include="Resources\drawable\ic_battery_80.png" />
+    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable\music_default_bg.png" />
+    <AndroidResource Include="Resources\drawable\seekbar_background.9.png" />
+    <AndroidResource Include="Resources\drawable\seekbar_progress.png" />
+    <AndroidResource Include="Resources\drawable\seekbar_thumb.png" />
+    <AndroidResource Include="Resources\drawable\video_default_icon.png" />
+    <AndroidResource Include="Resources\values\ids.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable\selector_titletext.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\layout\fragment_videolist.axml" />
+    <AndroidResource Include="Resources\layout\adapter_videolist.axml" />
+    <AndroidResource Include="Resources\drawable\selector_media_list.xml" />
+    <AndroidResource Include="Resources\layout\activity_videoplay.axml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_voice.xml" />
+    <AndroidResource Include="Resources\drawable\progress_horizontal_audio.xml" />
+    <AndroidResource Include="Resources\drawable\progress_horizontal.xml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_exit.xml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_pre.xml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_play.xml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_next.xml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_fullscreen.xml" />
+    <AndroidResource Include="Resources\drawable\voice_mute.png" />
+    <AndroidResource Include="Resources\drawable\selector_subtitletext.xml" />
+    <AndroidResource Include="Resources\layout\adapter_onlinevideolist.axml" />
+    <AndroidResource Include="Resources\drawable\pic_1.png" />
+    <AndroidResource Include="Resources\drawable\pic_2.png" />
+    <AndroidResource Include="Resources\drawable\selector_btn_pause.xml" />
+    <AndroidResource Include="Resources\layout\activity_login.axml" />
+    <AndroidResource Include="Resources\drawable\login_bg.9.png" />
+    <AndroidResource Include="Resources\drawable\login_reg_normal.9.png" />
+    <AndroidResource Include="Resources\drawable\login_reg_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable\login_button_nor.9.png" />
+    <AndroidResource Include="Resources\drawable\login_button_press.9.png" />
+    <AndroidResource Include="Resources\drawable\login_input.9.png" />
+    <AndroidResource Include="Resources\drawable\login_more.png" />
+    <AndroidResource Include="Resources\drawable\login_more_up.png" />
+    <AndroidResource Include="Resources\drawable\login_moremenu_back.9.png" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable\login_button_bg.xml" />
+    <AndroidResource Include="Resources\drawable\checkbox_bg1.xml" />
+    <AndroidResource Include="Resources\drawable\checkbox_selected.png" />
+    <AndroidResource Include="Resources\drawable\checkbox_selected_press.png" />
+    <AndroidResource Include="Resources\drawable\checkbox_unselect.png" />
+    <AndroidResource Include="Resources\drawable\checkbox_unselect_press.png" />
+    <AndroidResource Include="Resources\drawable\login_regist_bg.xml" />
+    <AndroidResource Include="Resources\layout\dialog_layout.axml" />
+    <AndroidResource Include="Resources\drawable\progressbar.xml" />
+    <AndroidResource Include="Resources\drawable\shape_dialog.xml" />
+    <AndroidResource Include="Resources\layout\activity_index.axml" />
+    <AndroidResource Include="Resources\drawable\selector_titlebg.xml" />
+    <AndroidResource Include="Resources\drawable\menu_setting.png" />
+    <AndroidResource Include="Resources\drawable\myspace.png" />
+    <AndroidResource Include="Resources\drawable\forward.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
+    <AndroidResource Include="Resources\drawable\cart.png" />
+    <AndroidResource Include="Resources\drawable\pencil.png" />
+    <AndroidResource Include="Resources\drawable\mouse.png" />
+    <AndroidResource Include="Resources\layout\gridview_listitem.axml" />
+    <AndroidResource Include="Resources\drawable\menu_exit.png" />
+    <AndroidResource Include="Resources\drawable\lesson_1.png" />
+    <AndroidResource Include="Resources\drawable\lesson_2.png" />
+    <AndroidResource Include="Resources\drawable\lesson_4.png" />
+    <AndroidResource Include="Resources\drawable\lesson_5.png" />
+    <AndroidResource Include="Resources\drawable\lesson_3.png" />
+    <AndroidResource Include="Resources\drawable\selector_point.xml" />
+    <AndroidResource Include="Resources\drawable\shape_red_point.xml" />
+    <AndroidResource Include="Resources\drawable\shape_gray_point.xml" />
+    <AndroidResource Include="Resources\layout\fragment_downvideolist.axml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_defaultscreen.xml" />
+    <AndroidResource Include="Resources\layout\activity_questionnair.axml" />
+    <AndroidResource Include="Resources\drawable\btn_green_selector.xml" />
+    <AndroidResource Include="Resources\drawable\function_greenbutton_normal.9.png" />
+    <AndroidResource Include="Resources\drawable\function_greenbutton_pressed.9.png" />
+    <AndroidResource Include="Resources\layout\fragment_audioquestion.axml" />
+    <AndroidResource Include="Resources\layout\fragment_audioquestionimage.axml" />
+    <AndroidResource Include="Resources\layout\fragment_audioedittext.axml" />
+    <AndroidResource Include="Resources\layout\fragment_audiotext.axml" />
+    <AndroidResource Include="Resources\layout\audio_player.axml" />
+    <AndroidResource Include="Resources\drawable\selector_audio_btn_play.xml" />
+    <AndroidResource Include="Resources\drawable\selector_audio_btn_pause.xml" />
+    <AndroidResource Include="Resources\layout\activity_landing.axml" />
+    <AndroidResource Include="Resources\drawable\landingscape.png" />
+    <AndroidResource Include="Resources\drawable\vision_anim.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="C#\" />
+    <Folder Include="C#\Activity\" />
+    <Folder Include="C#\UIOperation\" />
+    <Folder Include="C#\Utils\" />
+    <Folder Include="C#\Fragment\" />
+    <Folder Include="C#\Adapter\" />
+    <Folder Include="C#\Bean\" />
+    <Folder Include="C#\Interfaces\" />
+    <Folder Include="C#\BroadcastReceiver\" />
+    <Folder Include="C#\JSONObject\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Insights.1.11.2\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.2\build\MonoAndroid10\Xamarin.Insights.targets')" />
+  <ItemGroup>
+    <XamarinComponentReference Include="VitamioBinding">
+      <Version>1.5</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="NineOldAndroids">
+      <Version>2.4.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="json.net">
+      <Version>7.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\lecture.json" />
+  </ItemGroup>
+</Project>
