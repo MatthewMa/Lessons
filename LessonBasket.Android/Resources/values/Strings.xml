@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Click Me!</string>
-    <string name="app_name">LessonBasket</string>
+	<string name="hello">Hello World, Click Me!</string>
+	<string name="app_name">LessonBasketDemo</string>
+	<string name="login">Login</string>
+	<string name="account">Email Address</string>
+	<string name="password">Password</string>
+	<string name="auto_save_password">Remember Me</string>
+	<string name="sending_request">Now Sending Request...</string>
+	<string name="server">http://mgl.usask.ca:8080/usis/rest/lessons</string>
 </resources>
