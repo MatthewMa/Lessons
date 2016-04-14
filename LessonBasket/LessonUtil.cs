@@ -2,9 +2,9 @@
 
 namespace LessonBasket
 {
-	public class Image
+	public class LessonUtil
 	{
-		public Image ()
+		public LessonUtil ()
 		{
 		}
 	}
