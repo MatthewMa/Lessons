@@ -110,13 +110,14 @@
     <Compile Include="ViewControllers\SettingsViewController.cs" />
     <Compile Include="ViewControllers\LessonVideoScreenViewController.cs" />
     <Compile Include="Utilities\LessonScreenSelector.cs" />
+    <Compile Include="ViewControllers\LessonAudioScreenViewController.cs" />
+    <Compile Include="ViewControllers\LessonScreenViewController.cs" />
   </ItemGroup>
   <Import Project="..\LessonBasket\LessonBasket.projitems" Label="Shared" Condition="Exists('..\LessonBasket\LessonBasket.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Utilities\" />
     <Folder Include="ViewControllers\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Images.xcassets\LaunchImage.launchimage\2048x1536.png" />

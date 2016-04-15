@@ -7,16 +7,11 @@ using AVKit;
 
 namespace LessonBasket.iOS
 {
-    public class LessonVideoScreenViewController : UIViewController
+    public class LessonVideoScreenViewController : LessonScreenViewController
     {
-        public IList<Screen> Screens { get; set; }
-
-        public int Index { get; set; }
-
         public LessonVideoScreenViewController(IList<Screen> screens, int index)
+            : base(screens, index)
         {
-            Screens = screens;
-            Index = index;
         }
 
         public override void ViewDidLoad()
@@ -25,9 +20,19 @@ namespace LessonBasket.iOS
 
             View.BackgroundColor = UIColor.White;
 
-            NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Next", UIBarButtonItemStyle.Plain, ((sender, e) =>
-                    {
-                    })), true);
+            if (Index < Screens.Count - 1)
+            {
+                NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Next", UIBarButtonItemStyle.Plain, ((sender, e) =>
+                        {
+                            PushNextScreen();
+                        })), true);
+            }
+            else
+            {
+                NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Submit", UIBarButtonItemStyle.Plain, ((sender, e) =>
+                        {
+                        })), true); 
+            }
 
             var player = new AVPlayer(NSUrl.FromString(Screens[Index].video_url));
             var playerViewController = new AVPlayerViewController
