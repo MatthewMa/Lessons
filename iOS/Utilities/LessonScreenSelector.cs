@@ -12,10 +12,8 @@ namespace LessonBasket.iOS
 
             switch (screens[index].type)
             {
-                case "1":
+                case "video":
                     result = new LessonVideoScreenViewController(screens, index);
-                    break;
-                case "2":
                     break;
                 default:
                     break;

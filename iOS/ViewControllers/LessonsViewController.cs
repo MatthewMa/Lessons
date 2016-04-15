@@ -77,13 +77,17 @@ namespace LessonBasket.iOS
                 {
                     new Screen
                     {
-                        type = "1",
+                        type = "video",
                         video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
                     },
                 };
                 #endregion
 
-                Container.NavigationController.PushViewController(LessonScreenSelector.Select(screens, 0), true);
+                var lessonScreen = LessonScreenSelector.Select(screens, 0);
+                if (lessonScreen != null)
+                {
+                    Container.NavigationController.PushViewController(lessonScreen, true);
+                }
 
                 tableView.DeselectRow(indexPath, true);
             }

@@ -23,6 +23,12 @@ namespace LessonBasket.iOS
         {
             base.ViewDidLoad();
 
+            View.BackgroundColor = UIColor.White;
+
+            NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Next", UIBarButtonItemStyle.Plain, ((sender, e) =>
+                    {
+                    })), true);
+
             var player = new AVPlayer(NSUrl.FromString(Screens[Index].video_url));
             var playerViewController = new AVPlayerViewController
             {
