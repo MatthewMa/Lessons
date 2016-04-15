@@ -9,7 +9,7 @@ using System.Json;
 
 namespace LessonBasket
 {
-	public class LessonUtil
+	public static class LessonUtil
 	{
 		private static string LESSONS_URL="http://mgl.usask.ca:8080/usis/rest/lessons/";
 
