@@ -29,6 +29,7 @@ namespace LessonBasket.iOS
                 NavigationController.PushViewController(new LoginViewController(), true);
             };
 
+            #region Layout
             View.ConstrainLayout(() =>
                 button.Frame.Top == View.Frame.GetCenterY() + 60f &&
                 button.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
@@ -37,6 +38,7 @@ namespace LessonBasket.iOS
                 button.Frame.Height == 70f &&
                 button.Frame.Width == 300f 
             );
+            #endregion
         }
     }
 }

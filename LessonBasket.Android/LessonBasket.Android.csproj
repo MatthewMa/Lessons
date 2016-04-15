@@ -271,6 +271,8 @@
     <AndroidResource Include="Resources\layout\activity_landing.axml" />
     <AndroidResource Include="Resources\drawable\landingscape.png" />
     <AndroidResource Include="Resources\drawable\vision_anim.xml" />
+    <AndroidResource Include="Resources\drawable\next.png" />
+    <AndroidResource Include="Resources\drawable\previous.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

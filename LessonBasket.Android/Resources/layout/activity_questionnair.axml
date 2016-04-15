@@ -17,21 +17,29 @@
         android:orientation="horizontal">
         <TextView
             android:text="Navigation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/navigationTxt"
-            android:textSize="18dp"
+            android:textSize="24sp"
             android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:textColor="@android:color/white" />
+        <ImageView
+            android:id="@+id/iv_vision"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/vision_anim"
             android:layout_weight="2" />
         <Button
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="SUBMIT"
             android:id="@+id/btn_submit"
             android:gravity="center"
             android:background="@drawable/btn_green_selector"
             android:textColor="@android:color/black"
+            android:textSize="22sp"
             android:visibility="invisible" />
     </LinearLayout>
     <FrameLayout
@@ -54,14 +62,11 @@
         android:layout_marginTop="5dp">
         <Button
             style="@style/PreviousStyle"
-            android:layout_gravity="center_vertical" />
-        <ImageView
-            android:id="@+id/iv_vision"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/vision_anim" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp" />
         <Button
             style="@style/NextStyle"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 </LinearLayout>
