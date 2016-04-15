@@ -21,6 +21,7 @@ namespace LessonBasket.iOS
                     result = new LessonVideoScreenViewController(screens, index);
                     break;
                 case "audio_question":
+                    result = new LessonAudioScreenViewController(screens, index);
                     break;
                 default:
                     result = new UIViewController();

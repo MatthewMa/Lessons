@@ -83,7 +83,15 @@ namespace LessonBasket.iOS
                     new Screen
                     {
                         type = "audio_question",
-                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
+                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/56/73692776.5594JH%20Q2.mp3",
+                        questions = new List<string>
+                        {
+                            "Thunder Horton's",
+                            "Sweetgrass",
+                            "Thunderchild",
+                            "Poundmaker",
+                            "Starbucks",
+                        },
                     },
                 };
                 #endregion

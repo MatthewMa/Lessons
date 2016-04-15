@@ -29,6 +29,25 @@ namespace LessonBasket.iOS
                 NavigationController.PushViewController(lessonScreen, true);
             }
         }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            if (Index < Screens.Count - 1)
+            {
+                NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Next", UIBarButtonItemStyle.Plain, ((sender, e) =>
+                        {
+                            PushNextScreen();
+                        })), true);
+            }
+            else
+            {
+                NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Submit", UIBarButtonItemStyle.Plain, ((sender, e) =>
+                        {
+                        })), true); 
+            }
+        }
     }
 }
 

@@ -20,20 +20,6 @@ namespace LessonBasket.iOS
 
             View.BackgroundColor = UIColor.White;
 
-            if (Index < Screens.Count - 1)
-            {
-                NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Next", UIBarButtonItemStyle.Plain, ((sender, e) =>
-                        {
-                            PushNextScreen();
-                        })), true);
-            }
-            else
-            {
-                NavigationItem.SetRightBarButtonItem(new UIBarButtonItem("Submit", UIBarButtonItemStyle.Plain, ((sender, e) =>
-                        {
-                        })), true); 
-            }
-
             var player = new AVPlayer(NSUrl.FromString(Screens[Index].video_url));
             var playerViewController = new AVPlayerViewController
             {
@@ -43,8 +29,10 @@ namespace LessonBasket.iOS
             View.AddSubview(playerViewController.View);
 
             #region Layout
+            var navHeight = (float)NavigationController.NavigationBar.Frame.Size.Height;
+
             View.ConstrainLayout(() =>
-                playerViewController.View.Frame.Top == View.Frame.Top &&
+                playerViewController.View.Frame.Top == View.Frame.Top + navHeight &&
                 playerViewController.View.Frame.Left == View.Frame.Left &&
                 playerViewController.View.Frame.Right == View.Frame.Right &&
                 playerViewController.View.Frame.Bottom == View.Frame.Bottom
