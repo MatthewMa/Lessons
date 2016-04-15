@@ -13,7 +13,7 @@ namespace LessonBasket.iOS
         {
             base.ViewDidLoad();
 
-            View.BackgroundColor = UIColor.FromPatternImage(UIImage.FromBundle("parade.png"));
+            View.BackgroundColor = UIColor.FromPatternImage(UIImage.FromBundle("landing.png"));
 
             var button = new UIButton(UIButtonType.System)
             {
