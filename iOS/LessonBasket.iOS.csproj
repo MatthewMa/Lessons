@@ -133,6 +133,7 @@
     <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\radio_disable%402x.png" />
     <BundleResource Include="Resources\radio_enable%402x.png" />
+    <BundleResource Include="Resources\justin.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="json.net">

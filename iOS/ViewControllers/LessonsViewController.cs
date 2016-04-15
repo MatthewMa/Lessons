@@ -40,12 +40,14 @@ namespace LessonBasket.iOS
 
             LessonsTable.Source = new LessonTableSource(this, items);
 
+            #region Layout
             View.ConstrainLayout(() =>
                 LessonsTable.Frame.Top == View.Frame.Top &&
                 LessonsTable.Frame.Left == View.Frame.Left &&
                 LessonsTable.Frame.Right == View.Frame.Right &&
                 LessonsTable.Frame.Bottom == View.Frame.Bottom
             );
+            #endregion
         }
     }
 
