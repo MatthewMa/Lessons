@@ -108,7 +108,8 @@
     <Compile Include="ViewControllers\AccountViewController.cs" />
     <Compile Include="ViewControllers\AdminViewController.cs" />
     <Compile Include="ViewControllers\SettingsViewController.cs" />
-    <Compile Include="ViewControllers\LessonScreenViewController.cs" />
+    <Compile Include="ViewControllers\LessonVideoScreenViewController.cs" />
+    <Compile Include="Utilities\LessonScreenSelector.cs" />
   </ItemGroup>
   <Import Project="..\LessonBasket\LessonBasket.projitems" Label="Shared" Condition="Exists('..\LessonBasket\LessonBasket.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

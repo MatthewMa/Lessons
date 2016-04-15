@@ -23,7 +23,7 @@ namespace LessonBasket.iOS
             View.BackgroundColor = UIColor.White;
 
             LessonsTable = new UITableView();
-            Add(LessonsTable); // alias to View.AddSubview()
+            View.AddSubview(LessonsTable);
 
             #region Hardcoded
             var lesson1 = new Lesson();
@@ -77,11 +77,15 @@ namespace LessonBasket.iOS
                 {
                     new Screen
                     {
+                        type = "1",
                         video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
                     },
                 };
                 #endregion
-                
+
+                Container.NavigationController.PushViewController(LessonScreenSelector.Select(screens, 0), true);
+
+                tableView.DeselectRow(indexPath, true);
             }
         }
 
