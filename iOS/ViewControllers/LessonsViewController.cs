@@ -1,6 +1,7 @@
 ﻿using System;
 using UIKit;
 using System.Collections.Generic;
+using Foundation;
 
 namespace LessonBasket.iOS
 {
@@ -15,15 +16,16 @@ namespace LessonBasket.iOS
             TabBarItem.Title = "Lessons";
         }
 
-        public override void ViewWillAppear(bool animated)
+        public override void ViewDidLoad()
         {
-            base.ViewWillAppear(true);
+            base.ViewDidLoad();
 
             View.BackgroundColor = UIColor.White;
 
             LessonsTable = new UITableView();
             Add(LessonsTable); // alias to View.AddSubview()
 
+            #region Hardcoded
             var lesson1 = new Lesson();
             lesson1.title = "Clay Debray & the Muskrat";
             var lesson2 = new Lesson();
@@ -34,6 +36,7 @@ namespace LessonBasket.iOS
                 new Tuple<Lesson, bool>(lesson1, true),
                 new Tuple<Lesson, bool>(lesson2, false),
             };
+            #endregion
 
             LessonsTable.Source = new LessonTableSource(this, items);
 
@@ -50,11 +53,11 @@ namespace LessonBasket.iOS
     {
         public UIViewController Container { get; private set; }
 
-        public List<Tuple<Lesson, bool>> Items { get; set; }
+        public IList<Tuple<Lesson, bool>> Items { get; set; }
 
         private string cellIdentifier = "TableCell";
 
-        public LessonTableSource(UIViewController container, List<Tuple<Lesson, bool>> items)
+        public LessonTableSource(UIViewController container, IList<Tuple<Lesson, bool>> items)
         {
             Container = container;
             Items = items;
@@ -67,7 +70,19 @@ namespace LessonBasket.iOS
 
         public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
-            throw new System.NotImplementedException();
+            if (!Items[indexPath.Row].Item2)
+            {
+                #region Hardcoded
+                var screens = new List<Screen>
+                {
+                    new Screen
+                    {
+                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
+                    },
+                };
+                #endregion
+                
+            }
         }
 
         public override UITableViewCell GetCell(UITableView tableView, Foundation.NSIndexPath indexPath)
