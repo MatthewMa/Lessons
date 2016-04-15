@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace LessonBasketDemo
 {
@@ -10,7 +11,7 @@ namespace LessonBasketDemo
 		private string _description;
 		private int _size;
 		//question count
-		private string _url;
+		private List<string> _url;
 
 
 		[DataMember]
@@ -44,7 +45,7 @@ namespace LessonBasketDemo
 		}
 
 		[DataMember]
-		public string Url {
+		public List<string> Url {
 			get {
 				return this._url;
 			}
@@ -53,7 +54,7 @@ namespace LessonBasketDemo
 			}
 		}
 
-		public OnlineVideoItem (string title, string description, int size, string url, int src)
+		public OnlineVideoItem (string title, string description, int size, List<string> url, int src)
 		{
 			this.Title = title;
 			this.Description = description;

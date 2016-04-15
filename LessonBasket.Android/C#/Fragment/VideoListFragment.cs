@@ -11,6 +11,7 @@ using Java.IO;
 using Android.App;
 using Org.Apache.Http.Cookies;
 using System.Text;
+using LessonBasket;
 
 namespace LessonBasketDemo
 {
@@ -19,6 +20,7 @@ namespace LessonBasketDemo
 		private List<OnlineVideoItem> list;
 		private ListView lv_online;
 		private bool isFromOnline;
+		private Lesson lesson;
 
 		public override void initListner ()
 		{
@@ -55,21 +57,25 @@ namespace LessonBasketDemo
 		{
 			//load online from local database
 			list = new List<OnlineVideoItem> ();
-			int count = Constants.lists.Count;//pass the lecture to onlineVideoItem
+			int count = Constants.lessons_url.Count;//count video urls
 			if (count != 0) {
 				for (int i = 0; i < count; i++) {
+					//query and store info about lessons
+					try {
+						lesson = LessonUtil.getLessonFromRest (Constants.lessons_url [i]).Result;
+					} catch (Exception ex) {
+						DialogFactory.ToastDialog (this.Activity, "Data Error", "Data Error, please try again!", 3);
+					}
 					OnlineVideoItem it = new OnlineVideoItem ();
-					it.Title = Constants.lists [i].title;
-					it.Description = Constants.lists [i].description;
-					it.Size = Constants.lists [i].screenCount - 1;
-					it.Url = Constants.lists [i].screens [0].videoUrl;//put the first screen as video url
+					it.Description = lesson.description;
+					it.Title = lesson.title;
+					it.Size = lesson.screenCount - 1;
+					it.Url = new List<string> (lesson.screenList);
 					list.Add (it);
 				}
 			}
 			OnlineVideoAdapter online = new OnlineVideoAdapter (list, this.Activity);
 			lv_online.Adapter = online;
-
-
 		}
 
 

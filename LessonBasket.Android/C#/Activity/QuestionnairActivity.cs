@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Android.Content;
 using Android.Views;
 using Android.Graphics.Drawables;
+using System.Collections.Generic;
+using LessonBasket;
 
 namespace LessonBasketDemo
 {
@@ -20,11 +22,11 @@ namespace LessonBasketDemo
 		private Button previousBtn;
 		private int currentScreen = 1;
 		private int position = 0;
-		//which video info it is
-		private Lecture lecture;
 		private Fragment fragment;
 		private Button btn_submit;
 		private ImageView iv_vision;
+		private List<string> screen_urls;
+		private Screen screen;
 		public static Handler handler = new Handler ();
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -41,16 +43,19 @@ namespace LessonBasketDemo
 			animation.Start ();
 			//receive position
 			position = Intent.GetIntExtra ("index", 0);
-			//set lecture
-			lecture = Constants.lists [position];
-			updateScreen ();
-			validateBtns ();
-			nextBtn.Click += NextBtn_Click;
-			previousBtn.Click += PreviousBtn_Click;
-			btn_submit.Click += delegate(object sender, EventArgs e) {
-				//submit button is pressed
-				submitAnswers ();
-			};
+			//receive screen urls
+			IList<string> lists = Intent.GetStringArrayListExtra ("screen_urls");
+			if (lists != null) {
+				screen_urls = new List<string> (lists);
+				updateScreen ();
+				validateBtns ();
+				nextBtn.Click += NextBtn_Click;
+				previousBtn.Click += PreviousBtn_Click;
+				btn_submit.Click += delegate(object sender, EventArgs e) {
+					//submit button is pressed
+					submitAnswers ();
+				};
+			}
 		}
 
 		/// <summary>
@@ -79,7 +84,7 @@ namespace LessonBasketDemo
 			
 
 			updateAnswers (); //TODO if there is no answer, the flow should stop and the user must answer the question
-			if (currentScreen < Constants.lists [position].screenCount - 1)
+			if (currentScreen < screen_urls.Count - 1)
 				currentScreen++;
 			validateBtns ();
 			updateScreen ();
@@ -89,33 +94,42 @@ namespace LessonBasketDemo
 		private void updateScreen ()
 		{
 			//Every time a button is clicked the screen is updated
-			FindViewById<TextView> (Resource.Id.navigationTxt).Text = currentScreen + " / " + (lecture.screenCount - 1);
+			FindViewById<TextView> (Resource.Id.navigationTxt).Text = currentScreen + " / " + (screen_urls.Count - 1);
+			//go to server
+			try {
+				screen = LessonUtil.getLessonScreenFromRest (screen_urls [currentScreen]).Result;
+			} catch (Exception ex) {
+				DialogFactory.ToastDialog (this, "Data Error", "Data error, please try again!", 5);
+			}
+			if (screen != null) {
+				switch (screen.type) {
 
-			switch (lecture.screens [currentScreen].type) {
+				case "audio_text":
+					showAudioTextFragment ();
+					break;
 
-			case "audio_text":
-				showAudioTextFragment ();
-				break;
+				case "audio_question_image":
+					showAudioQuestionImageFragment ();
+					break;
 
-			case "audio_question_image":
-				showAudioQuestionImageFragment ();
-				break;
+				case "audio_question":
+					showAudioQuestionFragment ();
+					break;
 
-			case "audio_question":
-				showAudioQuestionFragment ();
-				break;
-
-			case "audio_edittext":
-				showAudioEditTextFragment ();
-
-				break;
-
-			case "video":
+				case "audio_edittext":
+					showAudioEditTextFragment ();
+					break;
+				case "text":
+					showTextFragment ();
+					break;
+				case "video":
 				//to do:if there is video question
-				break;
+					showVideoFragment ();
+					break;
 
-			default:
-				break;
+				default:
+					break;
+				}
 			}
 			
 		}
@@ -128,7 +142,7 @@ namespace LessonBasketDemo
 
 			if (audioEditText == null) {
 				// Make new fragment to show this selection.
-				audioEditText = AudioEditTextFragment.NewInstance (lecture.screens [currentScreen]);
+				audioEditText = AudioEditTextFragment.NewInstance (screen);
 
 				// Execute a transaction, replacing any existing
 				// fragment with this one inside the frame.
@@ -147,7 +161,7 @@ namespace LessonBasketDemo
 
 			if (audioQuestion == null) {
 				// Make new fragment to show this selection.
-				audioQuestion = AudioQuestionFragment.NewInstance (lecture.screens [currentScreen]);
+				audioQuestion = AudioQuestionFragment.NewInstance (screen);
 
 				// Execute a transaction, replacing any existing
 				// fragment with this one inside the frame.
@@ -166,7 +180,7 @@ namespace LessonBasketDemo
 
 			if (audioQuestionImage == null) {
 				// Make new fragment to show this selection.
-				audioQuestionImage = AudioQuestionImageFragment.NewInstance (lecture.screens [currentScreen]);
+				audioQuestionImage = AudioQuestionImageFragment.NewInstance (screen);
 
 				// Execute a transaction, replacing any existing
 				// fragment with this one inside the frame.
@@ -184,7 +198,7 @@ namespace LessonBasketDemo
 
 			if (audioText == null) {
 				// Make new fragment to show this selection.
-				audioText = AudioTextFragment.NewInstance (lecture.screens [currentScreen]);
+				audioText = AudioTextFragment.NewInstance (screen);
 
 				// Execute a transaction, replacing any existing
 				// fragment with this one inside the frame.
@@ -196,6 +210,16 @@ namespace LessonBasketDemo
 
 		}
 
+		private void showTextFragment ()
+		{
+			
+		}
+
+		private void showVideoFragment ()
+		{
+			
+		}
+
 		private void validateBtns ()
 		{
 			previousBtn.Visibility = ViewStates.Visible;
@@ -203,7 +227,7 @@ namespace LessonBasketDemo
 			btn_submit.Visibility = ViewStates.Invisible;
 			if (currentScreen == 1) {
 				previousBtn.Visibility = ViewStates.Invisible;
-			} else if (lecture != null && currentScreen == lecture.screenCount - 1) {
+			} else if (screen != null && currentScreen == screen_urls.Count - 1) {
 				nextBtn.Visibility = ViewStates.Invisible;
 				btn_submit.Visibility = ViewStates.Visible;
 			}
@@ -215,7 +239,7 @@ namespace LessonBasketDemo
 		{
 			//Every time a next or previous button is clicked, the answer set in that screen is saved
 			String answer = "";
-			switch (lecture.screens [currentScreen].type) {
+			switch (screen.type) {
 
 			case "audio_text":
 				
@@ -240,7 +264,9 @@ namespace LessonBasketDemo
 			case "video":
 				
 				return true;
+			case "text":
 
+				return true;
 			default:
 				
 				return true;

@@ -21,6 +21,7 @@ using Android.Support.V4.View;
 using Java.Security;
 using NineOldAndroids.Animation;
 using Android.Content.PM;
+using LessonBasket;
 
 namespace LessonBasketDemo
 {
@@ -73,6 +74,7 @@ namespace LessonBasketDemo
 
 		//Comment
 		private LinearLayout ll_comment;
+		private Screen screen;
 
 		public override void initListner ()
 		{
@@ -180,7 +182,16 @@ namespace LessonBasketDemo
 					}
 					currentOnlineVideoItem = new OnlineVideoItem ();
 					currentOnlineVideoItem = onlinevideoItems [currentPosition];
-					vv.SetVideoURI (Android.Net.Uri.Parse (currentOnlineVideoItem.Url));
+					string screen_url = currentOnlineVideoItem.Url [0];
+					//query
+					try {
+						screen = LessonUtil.getLessonScreenFromRest (screen_url).Result;
+					} catch (Exception ex) {
+						DialogFactory.ToastDialog (this, "Data Error", "Data error,please try again later!", 4);
+					}
+					if (screen != null) {
+						vv.SetVideoURI (Android.Net.Uri.Parse (Utils.EncodeURL (screen.video_url)));
+					}
 
 				}
 			} else {
@@ -257,6 +268,7 @@ namespace LessonBasketDemo
 		{
 			Intent intent = new Intent (this, typeof(QuestionnairActivity));
 			intent.PutExtra ("index", currentPosition);
+			intent.PutStringArrayListExtra ("screen_urls", currentOnlineVideoItem.Url);
 			StartActivity (intent);
 			Finish ();
 		}
@@ -421,7 +433,15 @@ namespace LessonBasketDemo
 				if (onlinevideoItems == null || onlinevideoItems.Count == 0 || currentPosition == -1)
 					return;
 				currentOnlineVideoItem = onlinevideoItems [currentPosition];
-				vv.SetVideoURI (Android.Net.Uri.Parse (currentOnlineVideoItem.Url));
+				string screen_url = currentOnlineVideoItem.Url [0];
+				//go to server 
+
+				try {
+					screen = LessonUtil.getLessonScreenFromRest (screen_url).Result;
+				} catch (Exception ex) {
+					DialogFactory.ToastDialog (this, "Data Error", "Data error, please try again!", 4);
+				}
+				vv.SetVideoURI (Android.Net.Uri.Parse (Utils.EncodeURL (screen.video_url)));
 				btn_next.Enabled = (currentPosition != onlinevideoItems.Count - 1);
 			} else {
 				if (videoItems == null || videoItems.Count == 0 || currentPosition == -1) {

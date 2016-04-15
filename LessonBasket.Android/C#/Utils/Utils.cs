@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using Android.Media;
 using System.Collections.Generic;
 using Android.OS;
+using System.Security.Policy;
+using Java.Net;
 
 namespace LessonBasketDemo
 {
@@ -85,7 +87,7 @@ namespace LessonBasketDemo
 		/// Gets the lecture from JSO.
 		/// </summary>
 		/// <returns>The lecture from JSO.</returns>
-		public static List<Lecture> getLecturesFromJSON ()
+		/*public static List<Lecture> getLecturesFromJSON ()
 		{
 			//Here would be the request to fetch questions
 			List<Lecture> lectures = new List<Lecture> ();
@@ -99,7 +101,7 @@ namespace LessonBasketDemo
 				lectures.Add (lecture);
 			}
 			return lectures;
-		}
+		}*/
 
 		/// <summary>
 		/// Gets the string from JSO(just use for local json)
@@ -210,6 +212,13 @@ namespace LessonBasketDemo
 				sendUpdateTime (handler, tv_play_time, sb_audio, mp);
 			}, 300);
 		}
+
+		public static string EncodeURL (string str)
+		{
+			String url = URLEncoder.Encode ("www.baidu.com", "utf-8").Replace ("\\+", "%20");
+			url = url.Replace ("%3A", ":").Replace ("%2F", "/");
+			return url;
+		}
 	}
 
 	public static class ObjectTypeHelper
@@ -220,5 +229,6 @@ namespace LessonBasketDemo
 			return propertyInfo == null ? null : propertyInfo.GetValue (obj, null) as T;
 		}
 	}
+
 }
 

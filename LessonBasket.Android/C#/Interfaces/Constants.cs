@@ -19,7 +19,7 @@ namespace LessonBasketDemo
 		//Error status
 		public const int REQUEST_FAILED = 0;
 		public const int NET_ERROR = 1;
-		public static List<Lecture> lists;
+		public static List<string> lessons_url;
 		public static readonly string VIDEO_URL = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/199/241/155.brave%20archery%20scene.mp4";
 	}
 }

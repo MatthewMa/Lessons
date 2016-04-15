@@ -97,9 +97,6 @@
     <Compile Include="C#\Adapter\MyGridViewAdapter.cs" />
     <Compile Include="C#\Adapter\MyPagerAdapter.cs" />
     <Compile Include="C#\Fragment\DownListFragment.cs" />
-    <Compile Include="C#\JSONObject\Lecture.cs" />
-    <Compile Include="C#\JSONObject\Screen.cs" />
-    <Compile Include="C#\JSONObject\ScreenImage.cs" />
     <Compile Include="C#\Utils\MyHandler.cs" />
     <Compile Include="C#\Fragment\AudioEditTextFragment.cs" />
     <Compile Include="C#\Fragment\AudioQuestionFragment.cs" />
@@ -286,8 +283,8 @@
     <Folder Include="C#\Bean\" />
     <Folder Include="C#\Interfaces\" />
     <Folder Include="C#\BroadcastReceiver\" />
-    <Folder Include="C#\JSONObject\" />
   </ItemGroup>
+  <Import Project="..\LessonBasket\LessonBasket.projitems" Label="Shared" Condition="Exists('..\LessonBasket\LessonBasket.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Insights.1.11.2\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.2\build\MonoAndroid10\Xamarin.Insights.targets')" />
   <ItemGroup>

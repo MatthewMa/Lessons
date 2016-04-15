@@ -12,6 +12,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.Media;
+using LessonBasket;
 
 namespace LessonBasketDemo
 {
@@ -21,10 +22,10 @@ namespace LessonBasketDemo
 
 		public string audioUrl { get { return Arguments.GetString ("audio_url", "defaulturl"); } }
 
-		public IList<String> choices { get { return Arguments.GetStringArrayList ("choices"); } }
+		public IList<string> questions { get { return Arguments.GetStringArrayList ("questions"); } }
 
 		private MediaPlayer mp = new MediaPlayer ();
-
+		private List<LessonBasket.Option> options;
 
 		public override Android.Views.View OnCreateView (Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{
@@ -42,11 +43,20 @@ namespace LessonBasketDemo
 
 			ViewGroup choicesRadioGroup = (ViewGroup)view.FindViewById<RadioGroup> (Resource.Id.choicesRadioGrp);
 
-			for (int i = 0; i < choices.Count; i++) {
-				RadioButton rdBtn = new RadioButton (Application.Context);
-				rdBtn.Id = (i);
-				rdBtn.Text = choices [i];
-				choicesRadioGroup.AddView (rdBtn);
+			for (int i = 0; i < questions.Count; i++) {
+				LessonBasket.Option option = null;
+				//go to server
+				try {
+					option = LessonUtil.getOptionFromRest (questions [i]).Result;
+				} catch {
+					DialogFactory.ToastDialog (this.Activity, "Data Error", "Data error, please try again!", 5);
+				}
+				if (option != null) {
+					RadioButton rdBtn = new RadioButton (Application.Context);
+					rdBtn.Id = (option.order);
+					rdBtn.Text = option.title;
+					choicesRadioGroup.AddView (rdBtn);
+				}
 			}		
 		}
 
@@ -54,8 +64,8 @@ namespace LessonBasketDemo
 		{
 			var audioQuestionFrag = new AudioQuestionFragment{ Arguments = new Bundle () };
 			audioQuestionFrag.Arguments.PutString ("question", screen.question);
-			audioQuestionFrag.Arguments.PutString ("audio_url", screen.audioUrl);
-			audioQuestionFrag.Arguments.PutStringArrayList ("choices", screen.choices);
+			audioQuestionFrag.Arguments.PutString ("audio_url", screen.audio_url);
+			audioQuestionFrag.Arguments.PutStringArrayList ("questions", screen.questions);
 			return audioQuestionFrag;
 		}
 

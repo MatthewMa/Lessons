@@ -17,6 +17,7 @@ using System.Json;
 using System.Threading.Tasks;
 using Org.Json;
 using System.ComponentModel;
+using LessonBasket;
 
 namespace LessonBasketDemo
 {
@@ -44,7 +45,7 @@ namespace LessonBasketDemo
 			//get data from local file
 
 			try {
-				Constants.lists = Utils.getLecturesFromJSON ();
+				Constants.lessons_url = new List<string> (LessonUtil.getLessonListFromRest ().Result);//get lesson url strings
 			} catch (Exception ex) {
 				returnLogin ();
 			}
@@ -117,63 +118,9 @@ namespace LessonBasketDemo
 			return base.OnTouchEvent (e);
 		}
 
-		/// <summary>
-		/// Gets the lecture from server(new thread).
-		/// </summary>
-		private async void getDataFromServer ()
-		{
-			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (Constants.server)); //TODO This url should not be hardcoded
-			request.ContentType = "application/json";
-			request.Timeout = 5000;//set connection timeout
-			request.ReadWriteTimeout = 5000;//set readwrite timeout
-			request.Method = "GET";
-			checkVersion ();//to do:version check
-
-			try {
-				using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync ()) {
-					if (response.StatusCode == HttpStatusCode.OK) {//checke if the response successful
-						// Get a stream representation of the HTTP web response:
-						using (Stream stream = response.GetResponseStream ()) {
-							long timestarted = DateTime.Now.Millisecond;
-							// Use this stream to build a JSON document object:
-							JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-							try {
-								for (int i = 0; i < jsonDoc.Count; i++) {
-									string json = jsonDoc.ToString ();
-									Lecture lecture = new Lecture (new JSONObject (json));
-									Constants.lists = new List<Lecture> ();
-									Constants.lists.Add (lecture);//save lecture to list
-								}
-								//to do: create a local database to save the JSON object
-								if (Constants.lists.Count > 0) {
-									long timeended = DateTime.Now.Millisecond;
-									long timeused = timeended - timestarted;
-									if (timeused < 3000) {
-										delayEnterHome (3000 - timeused);
-									}
-								}
-							} catch (Exception ex) { //catch JSON PARSING ERROR
-								returnLogin ();
-							}
-						} 
-					} else {
-						//get error,send message
-						Message msg = handler.ObtainMessage ();
-						msg.What = Constants.REQUEST_FAILED;
-						handler.SendMessage (msg);
-					}
-				}
-			} catch (Exception ex) {
-				//NET ERROR
-				Message msg = handler.ObtainMessage ();
-				msg.What = Constants.NET_ERROR;
-				handler.SendMessage (msg);
-			}		
-		}
-
 		private void returnLogin ()
 		{
-			DialogFactory.ToastDialog (this, "Data Error", "Cannot parse data,please try again!", 1);
+			DialogFactory.ToastDialog (this, "Server Error", "Cannot connect to server,please try again!", 1);
 		}
 	}
 }

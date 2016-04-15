@@ -20,7 +20,18 @@ namespace LessonBasketDemo
 				} else if (flag == 2) {
 					//return to question activity
 					(context as VideoPlayerActivity).enterQuestion ();
-				} 
+				} else if (flag == 3) {
+					//return to index activity
+					context.StartActivity (new Intent (context, typeof(IndexActivity)));
+					(context as HomeActivity).Finish ();
+				} else if (flag == 4) {
+					//return to home activity
+					(context as VideoPlayerActivity).StartActivity (new Intent (context, typeof(HomeActivity)));
+					(context as VideoPlayerActivity).Finish ();
+				} else if (flag == 5) {
+					(context as QuestionnairActivity).StartActivity (new Intent (context, typeof(HomeActivity)));
+					(context as QuestionnairActivity).Finish ();
+				}
 			});
 			ab.Create ().Show ();
 		}
