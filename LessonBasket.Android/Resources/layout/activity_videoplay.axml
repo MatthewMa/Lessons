@@ -211,26 +211,26 @@
             android:layout_weight="1" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:orientation="horizontal">
             <Button
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Start Answer Question Now"
                 android:background="@drawable/btn_green_selector"
                 android:id="@+id/btn_startquestion"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:layout_weight="1"
                 android:layout_margin="5dp" />
             <Button
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Write Comment"
                 android:background="@drawable/btn_green_selector"
                 android:id="@+id/btn_comment"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:layout_weight="1"
                 android:layout_margin="5dp" />
         </LinearLayout>
