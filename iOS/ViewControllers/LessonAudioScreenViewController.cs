@@ -29,10 +29,10 @@ namespace LessonBasket.iOS
             View.AddSubview(playerViewController.View);
 
             #region Layout
-            var navHeight = (float)NavigationController.NavigationBar.Frame.Size.Height;
+            var topPad = (float)NavigationController.NavigationBar.Frame.Size.Height + 20f;
 
             View.ConstrainLayout(() =>
-                playerViewController.View.Frame.Top == View.Frame.Top + navHeight &&
+                playerViewController.View.Frame.Top == View.Frame.Top + topPad &&
                 playerViewController.View.Frame.Left == View.Frame.Left &&
                 playerViewController.View.Frame.Right == View.Frame.Right &&
                 playerViewController.View.Frame.Height == 200f
@@ -49,11 +49,11 @@ namespace LessonBasket.iOS
                 };
                 View.AddSubview(label);
 
-                var topPad = 300f + 50f * i;
+                var optionTopPad = 300f + 50f * i;
                 var leftPad = 400f;
                 i++;
                 View.ConstrainLayout(() =>
-                    label.Frame.Top == View.Frame.Top + topPad &&
+                    label.Frame.Top == View.Frame.Top + optionTopPad &&
                     label.Frame.Left == View.Frame.Left + leftPad &&
                     label.Frame.Height == UIConstants.ControlsHeight
                 );

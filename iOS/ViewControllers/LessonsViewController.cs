@@ -83,7 +83,7 @@ namespace LessonBasket.iOS
                     new Screen
                     {
                         type = "audio_question",
-                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/56/73692776.5594JH%20Q2.mp3",
+                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
                         questions = new List<string>
                         {
                             "Thunder Horton's",

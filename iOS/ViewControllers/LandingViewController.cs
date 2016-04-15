@@ -30,7 +30,7 @@ namespace LessonBasket.iOS
             };
 
             View.ConstrainLayout(() =>
-                button.Frame.Top == View.Frame.GetCenterY() + 50f &&
+                button.Frame.Top == View.Frame.GetCenterY() + 60f &&
                 button.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
                 button.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
                 button.Frame.GetCenterX() == View.Frame.GetCenterX() &&
