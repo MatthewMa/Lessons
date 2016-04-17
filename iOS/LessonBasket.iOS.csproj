@@ -108,10 +108,11 @@
     <Compile Include="ViewControllers\AccountViewController.cs" />
     <Compile Include="ViewControllers\AdminViewController.cs" />
     <Compile Include="ViewControllers\SettingsViewController.cs" />
-    <Compile Include="ViewControllers\LessonVideoScreenViewController.cs" />
     <Compile Include="Utilities\LessonScreenSelector.cs" />
-    <Compile Include="ViewControllers\LessonAudioScreenViewController.cs" />
-    <Compile Include="ViewControllers\LessonScreenViewController.cs" />
+    <Compile Include="ViewControllers\LessonScreenBaseViewController.cs" />
+    <Compile Include="ViewControllers\LessonScreenVideoViewController.cs" />
+    <Compile Include="ViewControllers\LessonScreenRecorderViewController.cs" />
+    <Compile Include="ViewControllers\LessonScreenAudioViewController.cs" />
   </ItemGroup>
   <Import Project="..\LessonBasket\LessonBasket.projitems" Label="Shared" Condition="Exists('..\LessonBasket\LessonBasket.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

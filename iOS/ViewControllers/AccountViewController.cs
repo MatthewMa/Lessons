@@ -22,7 +22,7 @@ namespace LessonBasket.iOS
 
             var editButton = new UIButton(UIButtonType.System)
             {
-                BackgroundColor = UIColor.FromHSB(UIConstants.BackgroundColorHue, UIConstants.BackgroundColorSaturation, UIConstants.BackgroundColorBrightness),
+                BackgroundColor = UIColor.FromHSB(UIConstants.MainColorHue, UIConstants.MainColorSaturation, UIConstants.MainColorBrightness),
                 Font = UIFont.BoldSystemFontOfSize(UIConstants.NormalFontSize),
             };
             View.AddSubview(editButton);

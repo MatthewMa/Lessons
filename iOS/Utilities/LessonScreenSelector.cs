@@ -8,7 +8,7 @@ namespace LessonBasket.iOS
     {
         public static UIViewController Select(IList<Screen> screens, int index)
         {
-            if (index > screens.Count - 1)
+            if ((index > screens.Count - 1) || (index < 0))
             {
                 return null;
             }
@@ -18,10 +18,13 @@ namespace LessonBasket.iOS
             switch (screens[index].type)
             {
                 case "video":
-                    result = new LessonVideoScreenViewController(screens, index);
+                    result = new LessonScreenVideoViewController(screens, index);
                     break;
                 case "audio_question":
-                    result = new LessonAudioScreenViewController(screens, index);
+                    result = new LessonScreenAudioViewController(screens, index);
+                    break;
+                case "audio_recorder":
+                    result = new LessonScreenRecorderViewController(screens, index);
                     break;
                 default:
                     result = new UIViewController();

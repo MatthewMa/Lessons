@@ -15,39 +15,39 @@ namespace LessonBasket.iOS
             base.ViewDidLoad();
 
             Title = "Login";
-            View.BackgroundColor = UIColor.FromHSB(UIConstants.BackgroundColorHue, UIConstants.BackgroundColorSaturation, UIConstants.BackgroundColorBrightness);
+            View.BackgroundColor = UIColor.FromHSB(UIConstants.MainColorHue, UIConstants.MainColorSaturation, UIConstants.MainColorBrightness);
 
-            var logo = new UIImageView();
-            View.AddSubview(logo);
-            logo.Image = UIImage.FromBundle("logo.png");
+            var logoImageView = new UIImageView();
+            View.AddSubview(logoImageView);
+            logoImageView.Image = UIImage.FromBundle("logo.png");
 //            logo.Layer.BorderColor = new CGColor(255, 255, 255);
 //            logo.Layer.BorderWidth = 1f;
 //            logo.Layer.CornerRadius = 25f;
 
-            var username = new UITextField
+            var usernameTextField = new UITextField
             {
                 Placeholder = "Email",
                 BorderStyle = UITextBorderStyle.RoundedRect,
             };
-            View.AddSubview(username);
-            username.Layer.BorderColor = UIColor.Gray.CGColor;
-            username.Layer.BorderWidth = UIConstants.BorderWidth;
-            username.Layer.CornerRadius = UIConstants.CornerRadius;
+            View.AddSubview(usernameTextField);
+            usernameTextField.Layer.BorderColor = UIColor.Gray.CGColor;
+            usernameTextField.Layer.BorderWidth = UIConstants.BorderWidth;
+            usernameTextField.Layer.CornerRadius = UIConstants.CornerRadius;
 
-            var password = new UITextField
+            var passwordTextField = new UITextField
             {
                 Placeholder = "Password",
                 BorderStyle = UITextBorderStyle.RoundedRect,
                 SecureTextEntry = true,
             };
-            View.AddSubview(password);
-            password.Layer.BorderColor = UIColor.Gray.CGColor;
-            password.Layer.BorderWidth = UIConstants.BorderWidth;
-            password.Layer.CornerRadius = UIConstants.CornerRadius;
+            View.AddSubview(passwordTextField);
+            passwordTextField.Layer.BorderColor = UIColor.Gray.CGColor;
+            passwordTextField.Layer.BorderWidth = UIConstants.BorderWidth;
+            passwordTextField.Layer.CornerRadius = UIConstants.CornerRadius;
 
             var loginButton = new UIButton(UIButtonType.System)
             {
-                BackgroundColor = UIColor.FromHSB(UIConstants.BackgroundColorHue + 0.08f, UIConstants.BackgroundColorSaturation + 0.1f, UIConstants.BackgroundColorBrightness),
+                BackgroundColor = UIColor.FromHSB(UIConstants.MainColorHue + 0.08f, UIConstants.MainColorSaturation + 0.1f, UIConstants.MainColorBrightness),
                 Font = UIFont.BoldSystemFontOfSize(UIConstants.NormalFontSize),
             };
             View.AddSubview(loginButton);
@@ -66,7 +66,7 @@ namespace LessonBasket.iOS
             };
             View.AddSubview(signUpButton);
             signUpButton.SetTitle("Sign Up", UIControlState.Normal);
-            signUpButton.SetTitleColor(UIColor.FromHSB(UIConstants.BackgroundColorHue, UIConstants.BackgroundColorSaturation, UIConstants.BackgroundColorBrightness), UIControlState.Normal);
+            signUpButton.SetTitleColor(UIColor.FromHSB(UIConstants.MainColorHue, UIConstants.MainColorSaturation, UIConstants.MainColorBrightness), UIControlState.Normal);
             signUpButton.Layer.CornerRadius = UIConstants.CornerRadius;
 
             #region UI Layout
@@ -74,27 +74,27 @@ namespace LessonBasket.iOS
             var topPad = View.Frame.GetCenterY() - 170f - 100f; // 170 is half the total heights of all controls
 
             View.ConstrainLayout(() =>
-                logo.Frame.Top == View.Frame.Top + topPad &&
-                logo.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
-                logo.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
-                logo.Frame.GetCenterX() == View.Frame.GetCenterX() &&
-                logo.Frame.Width == 500f &&
+                logoImageView.Frame.Top == View.Frame.Top + topPad &&
+                logoImageView.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
+                logoImageView.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
+                logoImageView.Frame.GetCenterX() == View.Frame.GetCenterX() &&
+                logoImageView.Frame.Width == 500f &&
 
-                username.Frame.Top == logo.Frame.Bottom + 40f &&
-                username.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
-                username.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
-                username.Frame.Height == UIConstants.ControlsHeight &&
-                username.Frame.GetCenterX() == View.Frame.GetCenterX() &&
-                username.Frame.Width <= UIConstants.MaximumControlsWidth &&
+                usernameTextField.Frame.Top == logoImageView.Frame.Bottom + 40f &&
+                usernameTextField.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
+                usernameTextField.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
+                usernameTextField.Frame.Height == UIConstants.ControlsHeight &&
+                usernameTextField.Frame.GetCenterX() == View.Frame.GetCenterX() &&
+                usernameTextField.Frame.Width <= UIConstants.MaximumControlsWidth &&
 
-                password.Frame.Top == username.Frame.Bottom + 10f &&
-                password.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
-                password.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
-                password.Frame.Height == UIConstants.ControlsHeight &&
-                password.Frame.GetCenterX() == View.Frame.GetCenterX() &&
-                password.Frame.Width <= UIConstants.MaximumControlsWidth &&
+                passwordTextField.Frame.Top == usernameTextField.Frame.Bottom + 10f &&
+                passwordTextField.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
+                passwordTextField.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
+                passwordTextField.Frame.Height == UIConstants.ControlsHeight &&
+                passwordTextField.Frame.GetCenterX() == View.Frame.GetCenterX() &&
+                passwordTextField.Frame.Width <= UIConstants.MaximumControlsWidth &&
 
-                loginButton.Frame.Top == password.Frame.Bottom + 40f &&
+                loginButton.Frame.Top == passwordTextField.Frame.Bottom + 40f &&
                 loginButton.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
                 loginButton.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
                 loginButton.Frame.Height == UIConstants.ControlsHeight &&
