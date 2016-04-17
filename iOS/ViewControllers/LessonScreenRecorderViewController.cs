@@ -13,8 +13,6 @@ namespace LessonBasket.iOS
     {
         public AVAudioRecorder Recorder { get; set; }
 
-        public AVPlayer Player { get; set; }
-
         public NSDictionary Settings { get; set; }
 
         public NSUrl AudioFilePath { get; set; }
@@ -22,6 +20,8 @@ namespace LessonBasket.iOS
         public NSObject Observer;
 
         public Stopwatch Stopwatch { get; set; }
+
+        AVPlayer Player { get; set; }
 
         public LessonScreenRecorderViewController(IList<Screen> screens, int index)
             : base(screens, index)
@@ -66,6 +66,79 @@ namespace LessonBasket.iOS
             stopRecordingButton.SetTitle("Stop", UIControlState.Normal);
             stopRecordingButton.SetTitleColor(UIConstants.MainColor, UIControlState.Normal);
 
+            var playRecordedSoundButton = new UIButton
+            {
+            };
+            View.AddSubview(playRecordedSoundButton);
+            playRecordedSoundButton.SetTitle("Play", UIControlState.Normal);
+            playRecordedSoundButton.SetTitleColor(UIConstants.MainColor, UIControlState.Normal);
+
+            // start recording wireup
+            startRecordingButton.TouchUpInside += (sender, e) =>
+            {
+                AudioSession.Category = AudioSessionCategory.RecordAudio;
+                AudioSession.SetActive(true);
+
+                if (!PrepareAudioRecording())
+                {
+                    recordingStatusLabel.Text = "Error preparing";
+                    return;
+                }
+
+                if (!Recorder.Record())
+                {
+                    recordingStatusLabel.Text = "Error recording";
+                    return;
+                }
+
+                Stopwatch = new Stopwatch();
+                Stopwatch.Start();
+                lengthOfRecordingLabel.Text = "";
+                recordingStatusLabel.Text = "Recording";
+                startRecordingButton.Enabled = false;
+                stopRecordingButton.Enabled = true;
+            };
+
+            // stop recording wireup
+            stopRecordingButton.TouchUpInside += (sender, e) =>
+            {
+                Recorder.Stop();
+
+                lengthOfRecordingLabel.Text = string.Format("{0:hh\\:mm\\:ss}", Stopwatch.Elapsed);
+                Stopwatch.Stop();
+                recordingStatusLabel.Text = "";
+                startRecordingButton.Enabled = true;
+                stopRecordingButton.Enabled = false;
+            };
+
+            Observer = NSNotificationCenter.DefaultCenter.AddObserver(AVPlayerItem.DidPlayToEndTimeNotification, delegate (NSNotification n)
+                {
+                    Player.Dispose();
+                    Player = null;
+                });
+
+            // play recorded sound wireup
+            playRecordedSoundButton.TouchUpInside += (sender, e) =>
+            {
+                try
+                {
+                    Console.WriteLine("Playing Back Recording " + AudioFilePath.ToString());
+
+                    // The following line prevents the audio from stopping 
+                    // when the device autolocks. will also make sure that it plays, even
+                    // if the device is in mute
+                    AudioSession.Category = AudioSessionCategory.MediaPlayback;
+
+                    Player = new AVPlayer(AudioFilePath);
+                    Player.Play();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("There was a problem playing back audio: ");
+                    Console.WriteLine(ex.Message);
+                }
+            };
+
             #region Layout
             var topPad = (float)NavigationController.NavigationBar.Frame.Size.Height + 20f;
 
@@ -88,7 +161,12 @@ namespace LessonBasket.iOS
                 lengthOfRecordingLabel.Frame.Top == startRecordingButton.Frame.Bottom + 30f &&
                 lengthOfRecordingLabel.Frame.Left == stopRecordingButton.Frame.Right + 30f &&
                 lengthOfRecordingLabel.Frame.Height == UIConstants.ControlsHeight &&
-                lengthOfRecordingLabel.Frame.Width == 100f
+                lengthOfRecordingLabel.Frame.Width == 100f &&
+
+                playRecordedSoundButton.Frame.Top == stopRecordingButton.Frame.Bottom + 30f &&
+                playRecordedSoundButton.Frame.Left == View.Frame.Left + 30f &&
+                playRecordedSoundButton.Frame.Height == UIConstants.ControlsHeight &&
+                playRecordedSoundButton.Frame.Width == 100f 
             );
             #endregion
         }
