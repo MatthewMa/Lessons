@@ -23,7 +23,9 @@ namespace LessonBasketDemo
 
 		public string audioUrl { get { return Arguments.GetString ("audio_url", "defaulturl"); } }
 
-		public IList<String> choices { get { return Arguments.GetStringArrayList ("choices"); } }
+		public IList<String> questions { get { return Arguments.GetStringArrayList ("questions"); } }
+
+		public IList<String> images { get { return Arguments.GetStringArrayList ("images"); } }
 
 		private MediaPlayer mp = new MediaPlayer ();
 
@@ -45,10 +47,10 @@ namespace LessonBasketDemo
 			ViewGroup choicesRadioGroup = (ViewGroup)view.FindViewById<RadioGroup> (Resource.Id.choicesRadioGrp);
 
 
-			for (int i = 0; i < choices.Count; i++) {
+			for (int i = 0; i < questions.Count; i++) {
 				RadioButton rdBtn = new RadioButton (Application.Context);
 				rdBtn.Id = (i);
-				rdBtn.Text = choices [i];
+				rdBtn.Text = questions [i];
 				rdBtn.Gravity = GravityFlags.Center;
 				choicesRadioGroup.AddView (rdBtn);
 			}
@@ -60,8 +62,9 @@ namespace LessonBasketDemo
 		{
 			var audioQuestionImageFrag = new AudioQuestionImageFragment{ Arguments = new Bundle () };
 			audioQuestionImageFrag.Arguments.PutString ("question", screen.question);
-			audioQuestionImageFrag.Arguments.PutString ("audio_url", screen.audioUrl);
-			audioQuestionImageFrag.Arguments.PutStringArrayList ("choices", screen.choices);
+			audioQuestionImageFrag.Arguments.PutString ("audio_url", screen.audio_url);
+			audioQuestionImageFrag.Arguments.PutStringArrayList ("questions", screen.questions);
+			audioQuestionImageFrag.Arguments.PutStringArrayList ("images", screen.images);
 			return audioQuestionImageFrag;
 		}
 

@@ -32,10 +32,7 @@ namespace LessonBasketDemo
 
 
 
-		/// <summary>
-		/// 网络视频进入
-		/// </summary>
-		/// <param name="position">Position.</param>
+
 		private void enterOnlineVideoPlayActivity (int position)
 		{
 			Intent intent = new Intent (this.Activity, typeof(VideoPlayerActivity));
@@ -53,7 +50,7 @@ namespace LessonBasketDemo
 		/// <param name="cursor">Cursor.</param>
 
 
-		public override void initData ()
+		public override async void initData ()
 		{
 			//load online from local database
 			list = new List<OnlineVideoItem> ();
@@ -62,7 +59,7 @@ namespace LessonBasketDemo
 				for (int i = 0; i < count; i++) {
 					//query and store info about lessons
 					try {
-						lesson = LessonUtil.getLessonFromRest (Constants.lessons_url [i]).Result;
+						lesson = await LessonUtil.getLessonFromRest (Constants.lessons_url [i]);
 					} catch (Exception ex) {
 						DialogFactory.ToastDialog (this.Activity, "Data Error", "Data Error, please try again!", 3);
 					}

@@ -38,18 +38,21 @@ namespace LessonBasketDemo
 		/// <summary>
 		/// initiate data
 		/// </summary>
-		public override void initData ()
+		public override async void initData ()
 		{
 
 			//getDataFromServer ();
 			//get data from local file
-
 			try {
-				Constants.lessons_url = new List<string> (LessonUtil.getLessonListFromRest ().Result);//get lesson url strings
+				var tem = await LessonUtil.getLessonListFromRest ();
+				IList<string> urls = tem;
+				Constants.lessons_url = new List<string> (urls);//get lesson url strings
 			} catch (Exception ex) {
 				returnLogin ();
 			}
-			delayEnterHome (3000);
+			if (Constants.lessons_url != null) {
+				delayEnterHome (3000);
+			}
 		}
 
 		/// <summary>

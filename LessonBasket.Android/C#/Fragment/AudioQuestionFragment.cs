@@ -25,7 +25,6 @@ namespace LessonBasketDemo
 		public IList<string> questions { get { return Arguments.GetStringArrayList ("questions"); } }
 
 		private MediaPlayer mp = new MediaPlayer ();
-		private List<LessonBasket.Option> options;
 
 		public override Android.Views.View OnCreateView (Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{

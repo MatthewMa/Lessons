@@ -39,7 +39,7 @@ namespace LessonBasketDemo
 		{
 			var audioEditTextFragment = new AudioEditTextFragment{ Arguments = new Bundle () };
 			audioEditTextFragment.Arguments.PutString ("text", screen.text);
-			audioEditTextFragment.Arguments.PutString ("audio_url", screen.audioUrl);
+			audioEditTextFragment.Arguments.PutString ("audio_url", screen.audio_url);
 			return audioEditTextFragment;
 		}
 

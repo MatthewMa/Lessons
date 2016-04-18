@@ -11,7 +11,7 @@ namespace LessonBasket
 {
 	public static class LessonUtil
 	{
-		private static string LESSONS_URL="http://mgl.usask.ca:8080/usis/rest/lessons/";
+		private static string LESSONS_URL = "http://mgl.usask.ca:8080/usis/rest/lessons/";
 
 
 
@@ -21,17 +21,14 @@ namespace LessonBasket
 		public static async Task<IList<String>> getLessonListFromRest ()
 		{
 			IList<String> lessonList;
-			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (LESSONS_URL)); 
+			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (LESSONS_URL));
 			request.ContentType = "application/json";
 			request.Method = "GET";
-
-			using (WebResponse response = await request.GetResponseAsync ())
-			{
-				using (Stream stream = response.GetResponseStream ())
-				{
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				using (Stream stream = response.GetResponseStream ()) {
 					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					JArray lessonArray = JArray.Parse(jsonDoc.ToString());
-					lessonList = JsonConvert.DeserializeObject<IList<String>>(lessonArray.ToString());
+					JArray lessonArray = JArray.Parse (jsonDoc.ToString ());
+					lessonList = JsonConvert.DeserializeObject<IList<String>> (lessonArray.ToString ());
 				}
 			}
 			return lessonList;
@@ -48,12 +45,10 @@ namespace LessonBasket
 			request.ContentType = "application/json";
 			request.Method = "GET";
 
-			using (WebResponse response = await request.GetResponseAsync ())
-			{
-				using (Stream stream = response.GetResponseStream ())
-				{
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				using (Stream stream = response.GetResponseStream ()) {
 					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					image = JsonConvert.DeserializeObject<Image>(jsonDoc.ToString());
+					image = JsonConvert.DeserializeObject<Image> (jsonDoc.ToString ());
 				}
 			}
 			return image;
@@ -62,20 +57,19 @@ namespace LessonBasket
 		/// <summary>Get a specific screen.
 		/// <para>Returns a screen object from the screen Rest url</para>
 		/// </summary>
-		public static async Task<Screen> getLessonScreenFromRest (string screenUrl){
+		public static async Task<Screen> getLessonScreenFromRest (string screenUrl)
+		{
 
 			Screen screen;
 			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (new Uri (screenUrl)); 
 			request.ContentType = "application/json";
 			request.Method = "GET";
 
-			using (WebResponse response = await request.GetResponseAsync ())
-			{
+			using (WebResponse response = await request.GetResponseAsync ()) {
 				// Get a stream representation of the HTTP web response:
-				using (Stream stream = response.GetResponseStream ())
-				{
+				using (Stream stream = response.GetResponseStream ()) {
 					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					screen = JsonConvert.DeserializeObject<Screen>(jsonDoc.ToString());
+					screen = JsonConvert.DeserializeObject<Screen> (jsonDoc.ToString ());
 				}
 			}
 			return screen;
@@ -91,12 +85,10 @@ namespace LessonBasket
 			request.ContentType = "application/json";
 			request.Method = "GET";
 
-			using (WebResponse response = await request.GetResponseAsync ())
-			{
-				using (Stream stream = response.GetResponseStream ())
-				{
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				using (Stream stream = response.GetResponseStream ()) {
 					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					lesson = JsonConvert.DeserializeObject<Lesson>(jsonDoc.ToString());
+					lesson = JsonConvert.DeserializeObject<Lesson> (jsonDoc.ToString ());
 				}
 			}
 			return lesson;
@@ -112,12 +104,10 @@ namespace LessonBasket
 			request.ContentType = "application/json";
 			request.Method = "GET";
 
-			using (WebResponse response = await request.GetResponseAsync ())
-			{
-				using (Stream stream = response.GetResponseStream ())
-				{
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				using (Stream stream = response.GetResponseStream ()) {
 					JsonValue jsonDoc = await Task.Run (() => JsonObject.Load (stream));
-					option = JsonConvert.DeserializeObject<Option>(jsonDoc.ToString());
+					option = JsonConvert.DeserializeObject<Option> (jsonDoc.ToString ());
 				}
 			}
 			return option;

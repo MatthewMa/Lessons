@@ -273,6 +273,7 @@
     <AndroidResource Include="Resources\drawable\vision_anim.xml" />
     <AndroidResource Include="Resources\drawable\next.png" />
     <AndroidResource Include="Resources\drawable\previous.png" />
+    <AndroidResource Include="Resources\drawable\landscape.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
