@@ -14,8 +14,10 @@ import javax.ws.rs.core.UriInfo;
 import org.apache.log4j.Logger;
 
 import to.ImageTO;
+import to.LessonBr;
 import to.LessonScreenTO;
 import to.QuestionTO;
+import to.ScreenComplete;
 import to.ScreenTO;
 
 @Path("/lessons")
@@ -24,99 +26,87 @@ public class LessonService {
 	UriInfo uriInfo;
 	static final Logger LOGGER = Logger.getLogger(LessonService.class);
 
-	/*@GET
+	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<Lesson> getAllLessons(@Context HttpServletRequest request) {
+	public List<LessonBr> getLessonURLList(@Context HttpServletRequest request) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
-		return LessonDAO.getLessons();
+		return LessonDAO.getBriefLessons();
 	}
-	*/
-	/*
-	@GET @Path("{id}")
+
+	@GET
+	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public Lessons getLessonById(@Context HttpServletRequest request,@PathParam("id") String id) {
+	public LessonBr getLessonWithId(@Context HttpServletRequest request, @PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
-		return LessonDAO.getLessonById(id);
-	}
-	*/
-	@GET 
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<String> getLessonURLList(@Context HttpServletRequest request) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		return LessonDAO.getLessonURLList();
+
+		return LessonDAO.getLessonBriefLessonById(id);
 	}
 	
-	@GET @Path("{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public LessonScreenTO getLessonWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		return LessonDAO.getLessonWihScreenById(id);
-	}
 	
-	@GET @Path("screens/{id}")
+	@GET
+	@Path("{lessonid}/screens")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<Screen> getScreensByLessonId(@Context HttpServletRequest request,@PathParam("id") String id) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		return LessonDAO.getScreensLessonById(id);
-	}
-	@GET @Path("screensbylesson/{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<ScreenBrief> getScreensByLesson(@Context HttpServletRequest request,@PathParam("id") String id) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		return LessonDAO.getScreenBriefLessonById(id);
-	}
-	
-	@GET @Path("one-screen/{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public Screens getOneScreensById(@Context HttpServletRequest request,@PathParam("id") String id) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		return LessonDAO.getOneScreenById(id);
-	}
-	@GET @Path("{lessonid}/screens/{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public ScreenTO getScreenWithId(@Context HttpServletRequest request,@PathParam("id") String id,@PathParam("lessonid") String lessonid) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		
-		return LessonDAO.getScreenWithId(id,lessonid);
-	}
-	
-	@GET @Path("/list")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<Lesson> getListOfLessons(@Context HttpServletRequest request,@PathParam("id") String id,@PathParam("lessonid") String lessonid) {
-		String ip = request.getRemoteAddr();
-		System.out.println("IP:" + ip);
-		LOGGER.info("IP:" + ip);
-		return LessonDAO.getLessons();
-	}
-	
-	@GET @Path("{lessonid}/screens/list")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<Screen> getListOfScreens(@Context HttpServletRequest request,@PathParam("lessonid") String lessonid) {
+	public List<Screen> getListOfScreens(@Context HttpServletRequest request, @PathParam("lessonid") String lessonid) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
 		return LessonDAO.getScreensLessonById(lessonid);
 	}
 	
-	@GET @Path("{lessonid}/screens/{screenid}/images/{id}")
+	
+	@GET
+	@Path("{lessonid}/screens/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public ImageTO getImageWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
+	public ScreenComplete getScreenWithId(@Context HttpServletRequest request, @PathParam("id") String id,
+			@PathParam("lessonid") String lessonid) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getCompleteScreensById(id);
+	}
+	
+	@GET
+	@Path("{lessonid}/screens/position/{position}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public ScreenComplete getScreenByPosition(@Context HttpServletRequest request, @PathParam("id") String id,
+			@PathParam("lessonid") String lessonid,@PathParam("position") Integer position) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getScreenByPosition(lessonid, position);
+	}
+	
+	@GET
+	@Path("{lessonid}/screens/nextscreen/{screenid}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public ScreenComplete getScreenByNextPosition(@Context HttpServletRequest request,
+			@PathParam("lessonid") String lessonid,@PathParam("screenid") Integer currentScreenId) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getNextScreenByCurrentScreen(currentScreenId);
+	}
+	
+	
+	@GET
+	@Path("{lessonid}/screens/{screenid}/images")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<Images> getListOfImagesByScreenId(@Context HttpServletRequest request,
+			@PathParam("screenid") String screenId) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return ImageDAO.getListofImages(screenId);
+	}
+	
+	@GET
+	@Path("{lessonid}/screens/{screenid}/images/{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public ImageTO getImageWithId(@Context HttpServletRequest request, @PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
@@ -124,32 +114,90 @@ public class LessonService {
 	}
 	
 	
-	@GET @Path("{lessonid}/screens/{screenid}/images/list")
+	@GET
+	@Path("{lessonid}/screens/{screenid}/options")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<Images> getListOfImagesByScreenId(@Context HttpServletRequest request,@PathParam("screenid") String screenId) {
+	public List<Questions> getListOfOptionsByScreenId(@Context HttpServletRequest request,
+			@PathParam("screenid") String screenId) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
+
 		LOGGER.info("IP:" + ip);
-		return ImageDAO.getListofImages(screenId);
+		return QuestionDAO.getListOfOptionsByScreenId(screenId);
 	}
 	
-	@GET @Path("{lessonid}/screens/{screenid}/options/{id}")
+
+	@GET
+	@Path("{lessonid}/screens/{screenid}/options/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public QuestionTO getQuestionWithId(@Context HttpServletRequest request,@PathParam("id") String id) {
+	public QuestionTO getQuestionWithId(@Context HttpServletRequest request, @PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
-		
+
 		LOGGER.info("IP:" + ip);
 		return QuestionDAO.getQuestionWithId(id);
 	}
 	
-	@GET @Path("{lessonid}/screens/{screenid}/options/list")
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GET
+	@Path("screens/{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
-	public List<Questions> getListOfOptionsByScreenId(@Context HttpServletRequest request,@PathParam("screenid") String screenId) {
+	public List<Screen> getScreensByLessonId(@Context HttpServletRequest request, @PathParam("id") String id) {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
-		
 		LOGGER.info("IP:" + ip);
-		return QuestionDAO.getListOfOptionsByScreenId(screenId);
+		return LessonDAO.getScreensLessonById(id);
 	}
+
+	@GET
+	@Path("screensbylesson/{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<ScreenBrief> getScreensByLesson(@Context HttpServletRequest request, @PathParam("id") String id) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getScreenBriefLessonById(id);
+	}
+
+	@GET
+	@Path("one-screen/{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public Screens getOneScreensById(@Context HttpServletRequest request, @PathParam("id") String id) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getOneScreenById(id);
+	}
+
+	
+
+	@GET
+	@Path("/list")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON })
+	public List<Lesson> getListOfLessons(@Context HttpServletRequest request, @PathParam("id") String id,
+			@PathParam("lessonid") String lessonid) {
+		String ip = request.getRemoteAddr();
+		System.out.println("IP:" + ip);
+		LOGGER.info("IP:" + ip);
+		return LessonDAO.getLessons();
+	}
+	
+	
+	
+	
+	
+	
+
+	
 }

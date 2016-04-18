@@ -2,32 +2,25 @@ package usis;
 
 import java.io.Serializable;
 
-public class Lesson implements Serializable{
+import to.LessonBr;
+
+public class Lesson extends LessonBr implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2671368814956684351L;
 	
-	String title,description;
-	Integer id,screenCount;
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	String description;
+	Integer screenCount;
+	
+	
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	public Integer getScreenCount() {
 		return screenCount;
 	}

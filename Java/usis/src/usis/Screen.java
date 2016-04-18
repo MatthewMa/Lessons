@@ -8,7 +8,27 @@ public class Screen implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	String text,type,video_url,audio_url,question;
-	Integer id;
+	Integer id,position;
+	String imagesUrl,optionsUrl;
+	
+	public String getImagesUrl() {
+		return imagesUrl;
+	}
+	public void setImagesUrl(String imagesUrl) {
+		this.imagesUrl = imagesUrl;
+	}
+	public String getOptionsUrl() {
+		return optionsUrl;
+	}
+	public void setOptionsUrl(String optionsUrl) {
+		this.optionsUrl = optionsUrl;
+	}
+	public Integer getPosition() {
+		return position;
+	}
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
 	public String getText() {
 		return text;
 	}
