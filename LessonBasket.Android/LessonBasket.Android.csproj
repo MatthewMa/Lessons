@@ -104,6 +104,7 @@
     <Compile Include="C#\Fragment\AudioTextFragment.cs" />
     <Compile Include="C#\Activity\QuestionnairActivity.cs" />
     <Compile Include="C#\Activity\LandingActivity.cs" />
+    <Compile Include="C#\Activity\RegisterActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -175,8 +176,6 @@
     <AndroidResource Include="Resources\drawable\btn_pre_pressed.png" />
     <AndroidResource Include="Resources\drawable\btn_voice_normal.png" />
     <AndroidResource Include="Resources\drawable\btn_voice_pressed.png" />
-    <AndroidResource Include="Resources\drawable\icon.png" />
-    <AndroidResource Include="Resources\drawable\icon_notification.png" />
     <AndroidResource Include="Resources\drawable\icon_notification_next.png" />
     <AndroidResource Include="Resources\drawable\icon_notification_pre.png" />
     <AndroidResource Include="Resources\drawable\ic_battery_0.png" />
@@ -186,7 +185,6 @@
     <AndroidResource Include="Resources\drawable\ic_battery_40.png" />
     <AndroidResource Include="Resources\drawable\ic_battery_60.png" />
     <AndroidResource Include="Resources\drawable\ic_battery_80.png" />
-    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable\music_default_bg.png" />
     <AndroidResource Include="Resources\drawable\seekbar_background.9.png" />
     <AndroidResource Include="Resources\drawable\seekbar_progress.png" />
@@ -247,11 +245,6 @@
     <AndroidResource Include="Resources\drawable\mouse.png" />
     <AndroidResource Include="Resources\layout\gridview_listitem.axml" />
     <AndroidResource Include="Resources\drawable\menu_exit.png" />
-    <AndroidResource Include="Resources\drawable\lesson_1.png" />
-    <AndroidResource Include="Resources\drawable\lesson_2.png" />
-    <AndroidResource Include="Resources\drawable\lesson_4.png" />
-    <AndroidResource Include="Resources\drawable\lesson_5.png" />
-    <AndroidResource Include="Resources\drawable\lesson_3.png" />
     <AndroidResource Include="Resources\drawable\selector_point.xml" />
     <AndroidResource Include="Resources\drawable\shape_red_point.xml" />
     <AndroidResource Include="Resources\drawable\shape_gray_point.xml" />
@@ -274,6 +267,13 @@
     <AndroidResource Include="Resources\drawable\next.png" />
     <AndroidResource Include="Resources\drawable\previous.png" />
     <AndroidResource Include="Resources\drawable\landscape.png" />
+    <AndroidResource Include="Resources\layout\activity_register.axml" />
+    <AndroidResource Include="Resources\drawable\selector_btn_back.xml" />
+    <AndroidResource Include="Resources\drawable\shape_bg.xml" />
+    <AndroidResource Include="Resources\drawable\top_back_left.png" />
+    <AndroidResource Include="Resources\drawable\top_back_leftpress.png" />
+    <AndroidResource Include="Resources\drawable\title_bar.png" />
+    <AndroidResource Include="Resources\layout\dialog_resetpassword.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

@@ -79,7 +79,7 @@ namespace LessonBasketDemo
 
 				break;
 			case Resource.Id.regist_btn:
-
+				Register ();
 				break;
 			default:
 				break;
@@ -126,6 +126,14 @@ namespace LessonBasketDemo
 			}
 		}
 
+		/// <summary>
+		/// Register an account
+		/// </summary>
+		private void Register ()
+		{
+			StartActivity (new Intent (this, typeof(RegisterActivity)));
+			Finish ();
+		}
 	}
 }
 
