@@ -15,28 +15,28 @@ namespace LessonBasket.iOS
 
             View.BackgroundColor = UIColor.FromPatternImage(UIImage.FromBundle("landing.png"));
 
-            var button = new UIButton(UIButtonType.System)
+            var getStartedButton = new UIButton(UIButtonType.System)
             {
-                BackgroundColor = UIColor.FromHSB(UIConstants.BackgroundColorHue, UIConstants.BackgroundColorSaturation, UIConstants.BackgroundColorBrightness),
+                BackgroundColor = UIColor.FromHSB(UIConstants.MainColorHue, UIConstants.MainColorSaturation, UIConstants.MainColorBrightness),
                 Font = UIFont.BoldSystemFontOfSize(UIConstants.NormalFontSize),
             };
-            View.AddSubview(button);
-            button.SetTitle("GET STARTED", UIControlState.Normal);
-            button.SetTitleColor(UIColor.White, UIControlState.Normal);
-            button.Layer.CornerRadius = 30f;
-            button.TouchUpInside += (sender, e) =>
+            View.AddSubview(getStartedButton);
+            getStartedButton.SetTitle("GET STARTED", UIControlState.Normal);
+            getStartedButton.SetTitleColor(UIColor.White, UIControlState.Normal);
+            getStartedButton.Layer.CornerRadius = 30f;
+            getStartedButton.TouchUpInside += (sender, e) =>
             {
                 NavigationController.PushViewController(new LoginViewController(), true);
             };
 
             #region Layout
             View.ConstrainLayout(() =>
-                button.Frame.Top == View.Frame.GetCenterY() + 60f &&
-                button.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
-                button.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
-                button.Frame.GetCenterX() == View.Frame.GetCenterX() &&
-                button.Frame.Height == 70f &&
-                button.Frame.Width == 300f 
+                getStartedButton.Frame.Top == View.Frame.GetCenterY() + 60f &&
+                getStartedButton.Frame.Left >= View.Frame.Left + UIConstants.HorizontalPad &&
+                getStartedButton.Frame.Right >= View.Frame.Right - UIConstants.HorizontalPad &&
+                getStartedButton.Frame.GetCenterX() == View.Frame.GetCenterX() &&
+                getStartedButton.Frame.Height == 70f &&
+                getStartedButton.Frame.Width == 300f 
             );
             #endregion
         }

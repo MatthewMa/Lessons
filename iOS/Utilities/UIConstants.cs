@@ -1,4 +1,5 @@
 ﻿using System;
+using UIKit;
 
 namespace LessonBasket.iOS
 {
@@ -18,9 +19,10 @@ namespace LessonBasket.iOS
 
         public const float NormalFontSize = 20;
 
-        public const float BackgroundColorHue = 0.553f;
-        public const float BackgroundColorSaturation = 0.650f;
-        public const float BackgroundColorBrightness = 0.821f;
+        public const float MainColorHue = 0.553f;
+        public const float MainColorSaturation = 0.650f;
+        public const float MainColorBrightness = 0.821f;
+        public static readonly UIColor MainColor = UIColor.FromHSB(UIConstants.MainColorHue, UIConstants.MainColorSaturation, UIConstants.MainColorBrightness);
     }
 }
 

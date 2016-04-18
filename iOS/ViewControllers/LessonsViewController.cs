@@ -77,24 +77,28 @@ namespace LessonBasket.iOS
                 #region Hardcoded
                 var screens = new List<Screen>
                 {
-                    new Screen
-                    {
-                        type = "video",
-                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
-                    },
-                    new Screen
-                    {
-                        type = "audio_question",
-                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
-                        questions = new List<string>
+                        new Screen
                         {
-                            "Thunder Horton's",
-                            "Sweetgrass",
-                            "Thunderchild",
-                            "Poundmaker",
-                            "Starbucks",
+                            type = "audio_recorder", 
                         },
-                    },
+//                    new Screen
+//                    {
+//                        type = "video",
+//                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
+//                    },
+//                    new Screen
+//                    {
+//                        type = "audio_question",
+//                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
+//                        questions = new List<string>
+//                        {
+//                            "Thunder Horton's",
+//                            "Sweetgrass",
+//                            "Thunderchild",
+//                            "Poundmaker",
+//                            "Starbucks",
+//                        },
+//                    },
                 };
                 #endregion
 
@@ -102,6 +106,10 @@ namespace LessonBasket.iOS
                 if (lessonScreen != null)
                 {
                     Container.NavigationController.PushViewController(lessonScreen, true);
+                }
+                else
+                {
+                    // Display alert if needed !!
                 }
 
                 tableView.DeselectRow(indexPath, true);

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace LessonBasket.iOS
 {
-    public class LessonScreenViewController : UIViewController
+    public class LessonScreenBaseViewController : UIViewController
     {
         protected IList<Screen> Screens { get; set; }
 
         protected int Index { get; set; }
 
-        public LessonScreenViewController(IList<Screen> screens, int index)
+        public LessonScreenBaseViewController(IList<Screen> screens, int index)
         {
             Screens = screens;
             Index = index;
@@ -22,11 +22,19 @@ namespace LessonBasket.iOS
             {
                 return;
             }
+            else
+            {
+                // Display alert if needed!!
+            }
 
             var lessonScreen = LessonScreenSelector.Select(Screens, Index + 1);
             if (lessonScreen != null)
             {
                 NavigationController.PushViewController(lessonScreen, true);
+            }
+            else
+            {
+                // Display alert if needed !!
             }
         }
 

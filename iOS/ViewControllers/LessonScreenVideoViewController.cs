@@ -7,9 +7,9 @@ using AVKit;
 
 namespace LessonBasket.iOS
 {
-    public class LessonVideoScreenViewController : LessonScreenViewController
+    public class LessonScreenVideoViewController : LessonScreenBaseViewController
     {
-        public LessonVideoScreenViewController(IList<Screen> screens, int index)
+        public LessonScreenVideoViewController(IList<Screen> screens, int index)
             : base(screens, index)
         {
         }
