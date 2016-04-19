@@ -8,9 +8,10 @@ namespace LessonBasket
 
 		public int id { get; set;}
 		public string description { get; set;}
-		public IList<string> screenList { get; set;} //TODO this should not be string but the Screen object
+		public IList<Screen> screens { get; set;}
 		public int screenCount { get; set;}
 		public string title { get; set;}
+		public string url { get; set;}
 
 		public Lesson ()
 		{
