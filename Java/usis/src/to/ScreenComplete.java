@@ -1,33 +1,23 @@
-package usis;
+package to;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Screen implements Serializable {
+public class ScreenComplete implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String text,type,video_url,audio_url,question;
-	Integer id,position;
-	String imagesUrl,optionsUrl;
 	
-	public String getImagesUrl() {
-		return imagesUrl;
+	String text,type,video_url,audio_url,question;
+	List<QuestionTO> options;
+	List<ImageTO> images;
+	
+	public Integer getId() {
+		return Id;
 	}
-	public void setImagesUrl(String imagesUrl) {
-		this.imagesUrl = imagesUrl;
-	}
-	public String getOptionsUrl() {
-		return optionsUrl;
-	}
-	public void setOptionsUrl(String optionsUrl) {
-		this.optionsUrl = optionsUrl;
-	}
-	public Integer getPosition() {
-		return position;
-	}
-	public void setPosition(Integer position) {
-		this.position = position;
+	public void setId(Integer id) {
+		Id = id;
 	}
 	public String getText() {
 		return text;
@@ -59,10 +49,24 @@ public class Screen implements Serializable {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public Integer getId() {
-		return id;
+	
+	public List<QuestionTO> getOptions() {
+		return options;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setOptions(List<QuestionTO> options) {
+		this.options = options;
+	}
+	public List<ImageTO> getImages() {
+		return images;
+	}
+	public void setImages(List<ImageTO> images) {
+		this.images = images;
+	}
+	Integer Id,position;
+	public Integer getPosition() {
+		return position;
+	}
+	public void setPosition(Integer position) {
+		this.position = position;
 	}
 }
