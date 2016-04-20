@@ -4,6 +4,20 @@ public class LessonBr {
 	
 	Integer id;
 	String title,url;
+	String description;
+	Integer screenCount;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Integer getScreenCount() {
+		return screenCount;
+	}
+	public void setScreenCount(Integer screenCount) {
+		this.screenCount = screenCount;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -32,6 +32,7 @@ public class LessonService {
 		String ip = request.getRemoteAddr();
 		System.out.println("IP:" + ip);
 		LOGGER.info("IP:" + ip);
+		
 		return LessonDAO.getBriefLessons();
 	}
 
