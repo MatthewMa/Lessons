@@ -160,7 +160,7 @@ namespace LessonBasketDemo
 			audioManager.SetStreamVolume (Stream.Music, index, VolumeNotificationFlags.PlaySound);
 		}
 
-		public override void initData ()
+		public override async void initData ()
 		{
 			
 			//register battery change broadcast
@@ -182,10 +182,9 @@ namespace LessonBasketDemo
 					}
 					currentOnlineVideoItem = new OnlineVideoItem ();
 					currentOnlineVideoItem = onlinevideoItems [currentPosition];
-					string screen_url = currentOnlineVideoItem.Url [0];
 					//query
 					try {
-						screen = LessonUtil.getLessonScreenFromRest (screen_url).Result;
+						screen = await LessonUtil.GetScreenByPosition (currentPosition + 1, 0);
 					} catch (Exception ex) {
 						DialogFactory.ToastDialog (this, "Data Error", "Data error,please try again later!", 4);
 					}
@@ -221,7 +220,7 @@ namespace LessonBasketDemo
 				updateCurrentPosition ();//update current position
 				btn_play.SetBackgroundResource (Resource.Drawable.selector_btn_pause);//set play button
 				if (isFromOnline) {
-					tv_title.Text = currentOnlineVideoItem.Title;//set video title
+					tv_title.Text = currentOnlineVideoItem.Title + ":" + currentOnlineVideoItem.Description;//set video title
 				} else {
 					tv_title.Text = currentVideoItem.Title;//set video title
 				}
@@ -268,7 +267,6 @@ namespace LessonBasketDemo
 		{
 			Intent intent = new Intent (this, typeof(QuestionnairActivity));
 			intent.PutExtra ("index", currentPosition);
-			intent.PutStringArrayListExtra ("screen_urls", currentOnlineVideoItem.Url);
 			StartActivity (intent);
 			Finish ();
 		}
@@ -348,6 +346,7 @@ namespace LessonBasketDemo
 			if (batteryChangedReceiver != null) {
 				UnregisterReceiver (batteryChangedReceiver);
 			}
+			handler.RemoveCallbacksAndMessages (null);
 		}
 
 		public override void initView ()
@@ -426,7 +425,7 @@ namespace LessonBasketDemo
 			sendCtlHideMessage ();
 		}
 
-		public void openVideo ()
+		public async void openVideo ()
 		{
 			ll_loading.Visibility = ViewStates.Visible;
 			if (isFromOnline) {				
@@ -437,7 +436,7 @@ namespace LessonBasketDemo
 				//go to server 
 
 				try {
-					screen = LessonUtil.getLessonScreenFromRest (screen_url).Result;
+					screen = await LessonUtil.GetScreenByPosition (currentPosition + 1, 0);
 				} catch (Exception ex) {
 					DialogFactory.ToastDialog (this, "Data Error", "Data error, please try again!", 4);
 				}
@@ -611,7 +610,7 @@ namespace LessonBasketDemo
 			int moveVolume = (int)(distanceYY * maxVlumeScreenHeightScale);
 			int result = currentVolume + moveVolume;
 
-			// 预防超出范围
+			// extends 
 			if (result > maxVolume) {
 				result = maxVolume;
 			} else if (result < 0) {

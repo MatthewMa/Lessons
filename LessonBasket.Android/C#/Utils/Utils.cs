@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using Android.OS;
 using System.Security.Policy;
 using Java.Net;
+using Android.Graphics;
 
 namespace LessonBasketDemo
 {
@@ -133,7 +134,7 @@ namespace LessonBasketDemo
 				mp.Completion += delegate(object sender, EventArgs e) {
 					
 				};
-				mp.SetDataSource (context, Android.Net.Uri.Parse (audioUri));
+				mp.SetDataSource (context, Android.Net.Uri.Parse (EncodeURL (audioUri)));
 				mp.PrepareAsync ();
 
 			} catch (Exception ex) {
@@ -215,9 +216,22 @@ namespace LessonBasketDemo
 
 		public static string EncodeURL (string str)
 		{
-			String url = URLEncoder.Encode ("www.baidu.com", "utf-8").Replace ("\\+", "%20");
-			url = url.Replace ("%3A", ":").Replace ("%2F", "/");
+			String url = str.Replace (" ", "%20");
 			return url;
+		}
+
+		public static async Task setImageView (ImageView iv, string url)
+		{
+			Bitmap bitmap = null;
+			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create (EncodeURL (url));
+			request.Method = "GET";
+			request.ContentType = "multipart/form-data";
+			using (WebResponse response = await request.GetResponseAsync ()) {
+				using (System.IO.Stream stream = response.GetResponseStream ()) {
+					bitmap = BitmapFactory.DecodeStream (stream);
+				}
+			}
+			iv.SetImageBitmap (bitmap);
 		}
 	}
 

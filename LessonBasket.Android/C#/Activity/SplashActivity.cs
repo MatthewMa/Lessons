@@ -44,9 +44,9 @@ namespace LessonBasketDemo
 			//getDataFromServer ();
 			//get data from local file
 			try {
-				var tem = await LessonUtil.getLessonListFromRest ();
-				IList<string> urls = tem;
-				Constants.lessons_url = new List<string> (urls);//get lesson url strings
+				var tem = await LessonUtil.GetLessons ();
+				IList<Lesson> urls = tem;
+				Constants.lessons_url = new List<Lesson> (urls);//get lessons
 			} catch (Exception ex) {
 				returnLogin ();
 			}

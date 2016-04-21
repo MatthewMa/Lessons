@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Media;
 using LessonBasket;
+using System.Threading.Tasks;
 
 namespace LessonBasketDemo
 {
@@ -23,11 +24,13 @@ namespace LessonBasketDemo
 
 		public string audioUrl { get { return Arguments.GetString ("audio_url", "defaulturl"); } }
 
-		public IList<String> questions { get { return Arguments.GetStringArrayList ("questions"); } }
+		private static List<LessonBasket.Option> options;
 
-		public IList<String> images { get { return Arguments.GetStringArrayList ("images"); } }
+		private static List<LessonBasket.Image> images;
 
 		private MediaPlayer mp = new MediaPlayer ();
+
+		private ImageView iv;
 
 
 		public override Android.Views.View OnCreateView (Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
@@ -36,6 +39,8 @@ namespace LessonBasketDemo
 
 			var view = inflater.Inflate (Resource.Layout.fragment_audioquestionimage, container, false);
 			view.FindViewById<TextView> (Resource.Id.questionTxt).Text = text;
+			iv = view.FindViewById<ImageView> (Resource.Id.imageView1);
+			Utils.setImageView (iv, images [0].url);
 			populateChoices (view);
 			Utils.setAndPlayMusic (Activity, view, audioUrl, QuestionnairActivity.handler, mp);
 			return view;
@@ -47,10 +52,10 @@ namespace LessonBasketDemo
 			ViewGroup choicesRadioGroup = (ViewGroup)view.FindViewById<RadioGroup> (Resource.Id.choicesRadioGrp);
 
 
-			for (int i = 0; i < questions.Count; i++) {
+			for (int i = 0; i < options.Count; i++) {
 				RadioButton rdBtn = new RadioButton (Application.Context);
 				rdBtn.Id = (i);
-				rdBtn.Text = questions [i];
+				rdBtn.Text = options [i].title;
 				rdBtn.Gravity = GravityFlags.Center;
 				choicesRadioGroup.AddView (rdBtn);
 			}
@@ -63,8 +68,8 @@ namespace LessonBasketDemo
 			var audioQuestionImageFrag = new AudioQuestionImageFragment{ Arguments = new Bundle () };
 			audioQuestionImageFrag.Arguments.PutString ("question", screen.question);
 			audioQuestionImageFrag.Arguments.PutString ("audio_url", screen.audio_url);
-			audioQuestionImageFrag.Arguments.PutStringArrayList ("questions", screen.questions);
-			audioQuestionImageFrag.Arguments.PutStringArrayList ("images", screen.images);
+			options = new List<LessonBasket.Option> (screen.options);
+			images = new List<LessonBasket.Image> (screen.images);
 			return audioQuestionImageFrag;
 		}
 

@@ -25,11 +25,11 @@ namespace LessonBasketDemo
 		private Fragment fragment;
 		private Button btn_submit;
 		private ImageView iv_vision;
-		private List<string> screen_urls;
+		private List<Screen> screens;
 		private Screen screen;
 		public static Handler handler = new Handler ();
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override async void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			SetContentView (Resource.Layout.activity_questionnair);
@@ -43,19 +43,20 @@ namespace LessonBasketDemo
 			animation.Start ();
 			//receive position
 			position = Intent.GetIntExtra ("index", 0);
-			//receive screen urls
-			IList<string> lists = Intent.GetStringArrayListExtra ("screen_urls");
-			if (lists != null) {
-				screen_urls = new List<string> (lists);
-				updateScreen ();
-				validateBtns ();
-				nextBtn.Click += NextBtn_Click;
-				previousBtn.Click += PreviousBtn_Click;
-				btn_submit.Click += delegate(object sender, EventArgs e) {
-					//submit button is pressed
-					submitAnswers ();
-				};
+			//catch exception
+			try {
+				screens = await LessonUtil.GetScreensByLesson (position + 1);
+			} catch (Exception ex) {
+				DialogFactory.ToastDialog (this, "Data Error", "Data error,please try again later!", 4);
 			}
+			updateScreen ();
+			validateBtns ();
+			nextBtn.Click += NextBtn_Click;
+			previousBtn.Click += PreviousBtn_Click;
+			btn_submit.Click += delegate(object sender, EventArgs e) {
+				//submit button is pressed
+				submitAnswers ();
+			};
 		}
 
 		/// <summary>
@@ -84,7 +85,7 @@ namespace LessonBasketDemo
 			
 
 			updateAnswers (); //TODO if there is no answer, the flow should stop and the user must answer the question
-			if (currentScreen < screen_urls.Count - 1)
+			if (currentScreen < screens.Count - 1)
 				currentScreen++;
 			validateBtns ();
 			updateScreen ();
@@ -94,13 +95,9 @@ namespace LessonBasketDemo
 		private void updateScreen ()
 		{
 			//Every time a button is clicked the screen is updated
-			FindViewById<TextView> (Resource.Id.navigationTxt).Text = currentScreen + " / " + (screen_urls.Count - 1);
-			//go to server
-			try {
-				screen = LessonUtil.getLessonScreenFromRest (screen_urls [currentScreen]).Result;
-			} catch (Exception ex) {
-				DialogFactory.ToastDialog (this, "Data Error", "Data error, please try again!", 5);
-			}
+			FindViewById<TextView> (Resource.Id.navigationTxt).Text = currentScreen + " / " + (screens.Count - 1);
+			//get screen
+			screen = screens [currentScreen];
 			if (screen != null) {
 				switch (screen.type) {
 
@@ -122,11 +119,19 @@ namespace LessonBasketDemo
 				case "text":
 					showTextFragment ();
 					break;
+				case "audio_image":
+					showAudioImageFragment ();
+					break;
+				case "audio_text_image":
+					showAudioTextImage ();
+					break;
+				case "audio_text_image_edittext":
+					showAudioTextImageEdittext ();
+					break;
 				case "video":
 				//to do:if there is video question
 					showVideoFragment ();
 					break;
-
 				default:
 					break;
 				}
@@ -220,6 +225,21 @@ namespace LessonBasketDemo
 			
 		}
 
+		private void showAudioImageFragment ()
+		{
+			
+		}
+
+		private void showAudioTextImage ()
+		{
+			
+		}
+
+		private void showAudioTextImageEdittext ()
+		{
+			
+		}
+
 		private void validateBtns ()
 		{
 			previousBtn.Visibility = ViewStates.Visible;
@@ -227,7 +247,7 @@ namespace LessonBasketDemo
 			btn_submit.Visibility = ViewStates.Invisible;
 			if (currentScreen == 1) {
 				previousBtn.Visibility = ViewStates.Invisible;
-			} else if (screen != null && currentScreen == screen_urls.Count - 1) {
+			} else if (screen != null && currentScreen == screens.Count - 1) {
 				nextBtn.Visibility = ViewStates.Invisible;
 				btn_submit.Visibility = ViewStates.Visible;
 			}

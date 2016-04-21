@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using LessonBasket;
 
 namespace LessonBasketDemo
 {
 	public static class Constants
 	{
-		public static readonly string server = "http://mgl.usask.ca:8080/usis/rest/lessons/1";
 		public static readonly long secondMillis = 1000;
 		public static readonly long minuteMillis = 60 * secondMillis;
 		public static readonly long hourMillis = 60 * minuteMillis;
@@ -19,7 +19,7 @@ namespace LessonBasketDemo
 		//Error status
 		public const int REQUEST_FAILED = 0;
 		public const int NET_ERROR = 1;
-		public static List<string> lessons_url;
+		public static List<Lesson> lessons_url;
 		public static readonly string VIDEO_URL = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/199/241/155.brave%20archery%20scene.mp4";
 	}
 }

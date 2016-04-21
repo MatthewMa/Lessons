@@ -22,7 +22,7 @@ namespace LessonBasketDemo
 
 		public string audioUrl { get { return Arguments.GetString ("audio_url", "defaulturl"); } }
 
-		public IList<string> questions { get { return Arguments.GetStringArrayList ("questions"); } }
+		private static List<LessonBasket.Option> options;
 
 		private MediaPlayer mp = new MediaPlayer ();
 
@@ -42,17 +42,11 @@ namespace LessonBasketDemo
 
 			ViewGroup choicesRadioGroup = (ViewGroup)view.FindViewById<RadioGroup> (Resource.Id.choicesRadioGrp);
 
-			for (int i = 0; i < questions.Count; i++) {
-				LessonBasket.Option option = null;
-				//go to server
-				try {
-					option = LessonUtil.getOptionFromRest (questions [i]).Result;
-				} catch {
-					DialogFactory.ToastDialog (this.Activity, "Data Error", "Data error, please try again!", 5);
-				}
+			for (int i = 0; i < options.Count; i++) {
+				LessonBasket.Option option = options [i];
 				if (option != null) {
 					RadioButton rdBtn = new RadioButton (Application.Context);
-					rdBtn.Id = (option.order);
+					rdBtn.Id = (i);
 					rdBtn.Text = option.title;
 					choicesRadioGroup.AddView (rdBtn);
 				}
@@ -64,7 +58,9 @@ namespace LessonBasketDemo
 			var audioQuestionFrag = new AudioQuestionFragment{ Arguments = new Bundle () };
 			audioQuestionFrag.Arguments.PutString ("question", screen.question);
 			audioQuestionFrag.Arguments.PutString ("audio_url", screen.audio_url);
-			audioQuestionFrag.Arguments.PutStringArrayList ("questions", screen.questions);
+			if (screen != null) {
+				options = new List<LessonBasket.Option> (screen.options);
+			}
 			return audioQuestionFrag;
 		}
 

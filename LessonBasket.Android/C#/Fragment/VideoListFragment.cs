@@ -50,25 +50,22 @@ namespace LessonBasketDemo
 		/// <param name="cursor">Cursor.</param>
 
 
-		public override async void initData ()
+		public override void initData ()
 		{
 			//load online from local database
 			list = new List<OnlineVideoItem> ();
 			int count = Constants.lessons_url.Count;//count video urls
 			if (count != 0) {
 				for (int i = 0; i < count; i++) {
-					//query and store info about lessons
-					try {
-						lesson = await LessonUtil.getLessonFromRest (Constants.lessons_url [i]);
-					} catch (Exception ex) {
-						DialogFactory.ToastDialog (this.Activity, "Data Error", "Data Error, please try again!", 3);
-					}
+					//transfer data to serializable object
 					OnlineVideoItem it = new OnlineVideoItem ();
-					it.Description = lesson.description;
-					it.Title = lesson.title;
-					it.Size = lesson.screenCount - 1;
-					it.Url = new List<string> (lesson.screenList);
-					list.Add (it);
+					lesson = Constants.lessons_url [i];
+					if (lesson != null) {
+						it.Description = lesson.description;
+						it.Title = lesson.title;
+						it.Size = lesson.screenCount - 1;
+						list.Add (it);
+					}
 				}
 			}
 			OnlineVideoAdapter online = new OnlineVideoAdapter (list, this.Activity);
