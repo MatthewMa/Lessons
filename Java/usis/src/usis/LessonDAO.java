@@ -22,12 +22,15 @@ public class LessonDAO {
 		try {
 			Connection connection = Util.getConnection();
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("select id,title from lessons order by id");
+			ResultSet resultSet = statement.executeQuery("select id,title,screencount,description from lessons order by id");
 			while (resultSet.next()) {
 				LessonBr lesson = new LessonBr();
 				lesson.setId(resultSet.getInt("id"));
 				lesson.setTitle(resultSet.getString("title"));
 				lesson.setUrl(Settings.BASE_URL+""+resultSet.getInt("id"));
+				lesson.setScreenCount(resultSet.getInt("screencount"));
+				lesson.setDescription(resultSet.getString("description"));
+				
 				lessonList.add(lesson);
 			}
 		} catch (Exception e) {
@@ -48,6 +51,7 @@ public class LessonDAO {
 				lesson.setId(lessonResultset.getInt("id"));
 				lesson.setTitle(lessonResultset.getString("title"));
 				lesson.setUrl(Settings.BASE_URL+""+lessonResultset.getInt("id"));
+				lesson.setScreenCount(lessonResultset.getInt("screencount"));
 			}
 			Util.closeConnection(connection, screenStatement, lessonResultset);
 		} catch (Exception ee) {
