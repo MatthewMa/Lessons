@@ -105,6 +105,8 @@
     <Compile Include="C#\Activity\QuestionnairActivity.cs" />
     <Compile Include="C#\Activity\LandingActivity.cs" />
     <Compile Include="C#\Activity\RegisterActivity.cs" />
+    <Compile Include="C#\Fragment\VideoFragment.cs" />
+    <Compile Include="C#\Fragment\TextFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -275,6 +277,11 @@
     <AndroidResource Include="Resources\drawable\title_bar.png" />
     <AndroidResource Include="Resources\layout\dialog_resetpassword.axml" />
     <AndroidResource Include="Resources\layout\fragment_audiorecord.axml" />
+    <AndroidResource Include="Resources\layout\VideoFragment.axml" />
+    <AndroidResource Include="Resources\layout\fragment_text.axml" />
+    <AndroidResource Include="Resources\drawable\icon_record.png" />
+    <AndroidResource Include="Resources\drawable\record.png" />
+    <AndroidResource Include="Resources\drawable\recording.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -304,8 +311,5 @@
       <Version>7.0.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\lecture.json" />
   </ItemGroup>
 </Project>

@@ -31,6 +31,8 @@ namespace LessonBasketDemo
 				} else if (flag == 5) {
 					(context as QuestionnairActivity).StartActivity (new Intent (context, typeof(HomeActivity)));
 					(context as QuestionnairActivity).Finish ();
+				} else if (flag == 6) {
+					//todo: start result screen
 				}
 			});
 			ab.Create ().Show ();

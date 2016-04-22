@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Graphics.Drawables;
 using System.Collections.Generic;
 using LessonBasket;
+using Android.Graphics;
 
 namespace LessonBasketDemo
 {
@@ -30,6 +31,8 @@ namespace LessonBasketDemo
 		public static Handler handler = new Handler ();
 		private LinearLayout ll_loading;
 		private LinearLayout ll_questions;
+		public TextView tv_timer;
+		private int duration;
 
 		protected override async void OnCreate (Bundle savedInstanceState)
 		{
@@ -39,16 +42,15 @@ namespace LessonBasketDemo
 			previousBtn = FindViewById<Button> (Resource.Id.btn_pre);
 			fragment = FragmentManager.FindFragmentById (Resource.Id.fragmentContainer);
 			btn_submit = FindViewById<Button> (Resource.Id.btn_submit);
-			iv_vision = FindViewById<ImageView> (Resource.Id.iv_vision);
 			ll_loading = FindViewById<LinearLayout> (Resource.Id.ll_loading);
 			ll_questions = FindViewById<LinearLayout> (Resource.Id.ll_questions);
+			tv_timer = FindViewById<TextView> (Resource.Id.tv_timer);
 			ll_loading.Visibility = ViewStates.Visible;
 			ll_questions.Visibility = ViewStates.Gone;
-			//start animation
-			var animation = (AnimationDrawable)iv_vision.Background;
-			animation.Start ();
 			//receive position
 			position = Intent.GetIntExtra ("index", 0);
+			//set total time
+			duration = 60 * Constants.lessons_url [position].screenCount * 1000;
 			//catch exception
 			try {
 				screens = await LessonUtil.GetScreensByLessonAsync (position + 1);
@@ -65,6 +67,9 @@ namespace LessonBasketDemo
 			};
 			ll_loading.Visibility = ViewStates.Gone;
 			ll_questions.Visibility = ViewStates.Visible;
+			//start count time:
+			MyCountDownTimer timer = new MyCountDownTimer (duration, 1000, this);
+			timer.Start ();
 		}
 
 		/// <summary>
@@ -225,7 +230,18 @@ namespace LessonBasketDemo
 
 		private void showTextFragment ()
 		{
-			
+			var text = fragment as TextFragment;
+			if (text == null) {
+				// Make new fragment to show this selection.
+				text = TextFragment.NewInstance (screen);
+
+				// Execute a transaction, replacing any existing
+				// fragment with this one inside the frame.
+				var ft = FragmentManager.BeginTransaction ();
+				ft.Replace (Resource.Id.fragmentContainer, text);
+				ft.SetTransition (FragmentTransit.FragmentFade);
+				ft.Commit ();
+			}
 		}
 
 		private void showVideoFragment ()
@@ -278,7 +294,6 @@ namespace LessonBasketDemo
 					//If the user has not selected any radiobutton we return false
 					return false;
 				answer = FindViewById<RadioButton> (FindViewById<RadioGroup> (Resource.Id.choicesRadioGrp).CheckedRadioButtonId).Text;
-
 				return true;
 
 			case "audio_question":
@@ -306,6 +321,29 @@ namespace LessonBasketDemo
 		{
 			//back pressed
 			DialogFactory.ToastDialog (this, "Return", "Please answer all questions and submit!", 0);
+		}
+	}
+
+	public class MyCountDownTimer:CountDownTimer
+	{
+		private Context context;
+
+		public MyCountDownTimer (long millisInFuture, long countDownInterval, Context context) : base (millisInFuture, countDownInterval)
+		{
+			this.context = context;
+		}
+
+		public override void OnFinish ()
+		{
+			DialogFactory.ToastDialog (context, "Time up", "Time is out,it will go to result screen!", 6);
+		}
+
+		public override void OnTick (long millisUntilFinished)
+		{
+			if (millisUntilFinished <= 10000) {
+				(context as QuestionnairActivity).tv_timer.SetTextColor (Color.Red);
+			}
+			(context as QuestionnairActivity).tv_timer.Text = Utils.formatMillis (millisUntilFinished) + "";
 		}
 	}
 }
