@@ -69,14 +69,14 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true" />
             <EditText
-                android:text="Default Text"
+                android:hint="Please input your answer here:"
                 android:layout_width="match_parent"
                 android:layout_weight="30"
                 android:layout_height="0dp"
                 android:textSize="20dp"
                 android:gravity="top"
                 android:background="#ff212121"
-                android:textColor="#ff76ff03" />
+                android:textColorHint="#ff76ff03" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

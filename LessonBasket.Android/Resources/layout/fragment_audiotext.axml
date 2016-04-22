@@ -28,9 +28,10 @@
         android:layout_height="10dp"
         android:layout_weight="20"
         android:id="@+id/editText1"
-        android:text="Input"
+        android:hint="Please input your answer here:"
         android:typeface="sans"
         android:background="#ff212121"
-        android:textColor="#ff76ff03"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        android:gravity="top"
+        android:textColorHint="#ff76ff03" />
 </LinearLayout>

@@ -13,6 +13,7 @@ using Android.Widget;
 using Android.Text;
 using System.Text.RegularExpressions;
 using Android.Preferences;
+using Android.App.Admin;
 
 namespace LessonBasketDemo
 {
@@ -30,6 +31,11 @@ namespace LessonBasketDemo
 		private string password;
 		private ISharedPreferences sp;
 		private ISharedPreferencesEditor edit;
+		private View popView;
+		//popView
+		private EditText et_email;
+		private Button btn_send;
+		private Button btn_resetcancel;
 
 		#region implemented abstract members of BaseActivity
 
@@ -76,7 +82,7 @@ namespace LessonBasketDemo
 				Finish ();
 				break;
 			case Resource.Id.btn_reset:
-
+				ResetPassword ();
 				break;
 			case Resource.Id.regist_btn:
 				Register ();
@@ -133,6 +139,29 @@ namespace LessonBasketDemo
 		{
 			StartActivity (new Intent (this, typeof(RegisterActivity)));
 			Finish ();
+		}
+
+		private void ResetPassword ()
+		{
+			popView = View.Inflate (this, Resource.Layout.dialog_resetpassword, null);
+			et_email = popView.FindViewById<EditText> (Resource.Id.et_emailaddress);
+			btn_send = popView.FindViewById<Button> (Resource.Id.btn_send);
+			btn_resetcancel = popView.FindViewById<Button> (Resource.Id.btn_cancel);
+			PopupWindow pop = new PopupWindow (popView, 400, 400);
+			pop.ShowAtLocation (btn_reset, GravityFlags.Center, 0, -100);
+			//set click listener
+			btn_send.Click += delegate(object sender, EventArgs e) {
+				//check email empty
+				string address = et_email.Text;
+				if (string.IsNullOrEmpty (address)) {
+					DialogFactory.ToastDialog (this, "Reset Password", "Email address cannot be empty!", 0);
+				} else {
+					//todo:send an email
+				}
+			};
+			btn_resetcancel.Click += delegate(object sender, EventArgs e) {
+				pop.Dismiss ();	
+			};
 		}
 	}
 }

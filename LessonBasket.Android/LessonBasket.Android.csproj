@@ -274,6 +274,7 @@
     <AndroidResource Include="Resources\drawable\top_back_leftpress.png" />
     <AndroidResource Include="Resources\drawable\title_bar.png" />
     <AndroidResource Include="Resources\layout\dialog_resetpassword.axml" />
+    <AndroidResource Include="Resources\layout\fragment_audiorecord.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

@@ -28,6 +28,8 @@ namespace LessonBasketDemo
 		private List<Screen> screens;
 		private Screen screen;
 		public static Handler handler = new Handler ();
+		private LinearLayout ll_loading;
+		private LinearLayout ll_questions;
 
 		protected override async void OnCreate (Bundle savedInstanceState)
 		{
@@ -38,6 +40,10 @@ namespace LessonBasketDemo
 			fragment = FragmentManager.FindFragmentById (Resource.Id.fragmentContainer);
 			btn_submit = FindViewById<Button> (Resource.Id.btn_submit);
 			iv_vision = FindViewById<ImageView> (Resource.Id.iv_vision);
+			ll_loading = FindViewById<LinearLayout> (Resource.Id.ll_loading);
+			ll_questions = FindViewById<LinearLayout> (Resource.Id.ll_questions);
+			ll_loading.Visibility = ViewStates.Visible;
+			ll_questions.Visibility = ViewStates.Gone;
 			//start animation
 			var animation = (AnimationDrawable)iv_vision.Background;
 			animation.Start ();
@@ -57,6 +63,8 @@ namespace LessonBasketDemo
 				//submit button is pressed
 				submitAnswers ();
 			};
+			ll_loading.Visibility = ViewStates.Gone;
+			ll_questions.Visibility = ViewStates.Visible;
 		}
 
 		/// <summary>
