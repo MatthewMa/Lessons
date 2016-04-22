@@ -77,20 +77,20 @@ namespace LessonBasket.iOS
                 #region Hardcoded
                 var screens = new List<Screen>
                 {
-                        new Screen
-                        {
-                            type = "audio_recorder", 
-                        },
-//                    new Screen
-//                    {
-//                        type = "video",
-//                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
-//                    },
-//                    new Screen
-//                    {
-//                        type = "audio_question",
-//                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
-//                        questions = new List<string>
+                    new Screen
+                    {
+                        type = "audio_recorder", 
+                    },
+                    new Screen
+                    {
+                        type = "video",
+                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
+                    },
+                    new Screen
+                    {
+                        type = "audio_question",
+                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
+//                        options = new List<string>
 //                        {
 //                            "Thunder Horton's",
 //                            "Sweetgrass",
@@ -98,7 +98,7 @@ namespace LessonBasket.iOS
 //                            "Poundmaker",
 //                            "Starbucks",
 //                        },
-//                    },
+                    },
                 };
                 #endregion
 

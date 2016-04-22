@@ -41,59 +41,59 @@ namespace LessonBasket.iOS
             );
             #endregion
 
-            QuestionsUIs = new List<Tuple<UIButton, UIButton>>();
-
-            var i = 1;
-            foreach (var option in Screens[Index].questions)
-            {
-                var answerRadioButton = new UIButton(UIButtonType.RoundedRect);
-                View.AddSubview(answerRadioButton);
-                answerRadioButton.SetImage(UIImage.FromBundle("radio_enable.png"), UIControlState.Normal);
-                answerRadioButton.SetImage(UIImage.FromBundle("radio_disable.png"), UIControlState.Disabled);
-                if (i != 1)
-                {
-                    answerRadioButton.Enabled = false;
-                }
-
-                var answerTextButton = new UIButton(UIButtonType.System);
-                View.AddSubview(answerTextButton);
-                answerTextButton.SetTitle(option, UIControlState.Normal);
-
-                QuestionsUIs.Add(new Tuple<UIButton, UIButton>(answerRadioButton, answerTextButton));
-
-                var optionTopPad = 300f + 50f * i;
-                var leftPad = 400f;
-                View.ConstrainLayout(() =>
-                    answerRadioButton.Frame.Top == View.Frame.Top + optionTopPad &&
-                    answerRadioButton.Frame.Left == View.Frame.Left + leftPad &&
-                    answerRadioButton.Frame.Height == 20f &&
-                    answerRadioButton.Frame.Width == 20f &&
-
-                    answerTextButton.Frame.GetCenterY() == answerRadioButton.Frame.GetCenterY() &&
-                    answerTextButton.Frame.Left == answerRadioButton.Frame.Left + 30f &&
-                    answerTextButton.Frame.Height == UIConstants.ControlsHeight
-                );
-
-                i++;
-            }
-
-            i = 0;
-            foreach (var tuple in QuestionsUIs)
-            {
-                tuple.Item2.TouchUpInside += (sender, e) =>
-                {
-                    tuple.Item1.Enabled = true;
-
-                    foreach (var otherTuple in QuestionsUIs)
-                    {
-                        if (!Object.ReferenceEquals(sender, otherTuple.Item2))
-                        {
-                            otherTuple.Item1.Enabled = false;
-                        }
-                    }
-                };
-                i++;
-            }
+//            QuestionsUIs = new List<Tuple<UIButton, UIButton>>();
+//
+//            var i = 1;
+//            foreach (var option in Screens[Index].options)
+//            {
+//                var answerRadioButton = new UIButton(UIButtonType.RoundedRect);
+//                View.AddSubview(answerRadioButton);
+//                answerRadioButton.SetImage(UIImage.FromBundle("radio_enable.png"), UIControlState.Normal);
+//                answerRadioButton.SetImage(UIImage.FromBundle("radio_disable.png"), UIControlState.Disabled);
+//                if (i != 1)
+//                {
+//                    answerRadioButton.Enabled = false;
+//                }
+//
+//                var answerTextButton = new UIButton(UIButtonType.System);
+//                View.AddSubview(answerTextButton);
+//                answerTextButton.SetTitle(option.title, UIControlState.Normal);
+//
+//                QuestionsUIs.Add(new Tuple<UIButton, UIButton>(answerRadioButton, answerTextButton));
+//
+//                var optionTopPad = 300f + 50f * i;
+//                var leftPad = 400f;
+//                View.ConstrainLayout(() =>
+//                    answerRadioButton.Frame.Top == View.Frame.Top + optionTopPad &&
+//                    answerRadioButton.Frame.Left == View.Frame.Left + leftPad &&
+//                    answerRadioButton.Frame.Height == 20f &&
+//                    answerRadioButton.Frame.Width == 20f &&
+//
+//                    answerTextButton.Frame.GetCenterY() == answerRadioButton.Frame.GetCenterY() &&
+//                    answerTextButton.Frame.Left == answerRadioButton.Frame.Left + 30f &&
+//                    answerTextButton.Frame.Height == UIConstants.ControlsHeight
+//                );
+//
+//                i++;
+//            }
+//
+//            i = 0;
+//            foreach (var tuple in QuestionsUIs)
+//            {
+//                tuple.Item2.TouchUpInside += (sender, e) =>
+//                {
+//                    tuple.Item1.Enabled = true;
+//
+//                    foreach (var otherTuple in QuestionsUIs)
+//                    {
+//                        if (!Object.ReferenceEquals(sender, otherTuple.Item2))
+//                        {
+//                            otherTuple.Item1.Enabled = false;
+//                        }
+//                    }
+//                };
+//                i++;
+//            }
         }
     }
 }
