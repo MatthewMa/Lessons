@@ -61,8 +61,8 @@ namespace LessonBasketDemo
 					OnlineVideoItem it = new OnlineVideoItem ();
 					lesson = Constants.lessons_url [i];
 					if (lesson != null) {
-						it.Description = lesson.description;
-						it.Title = lesson.title;
+						it.Description = lesson.Description;
+						it.Title = lesson.Title;
 						it.Size = lesson.screenCount - 1;
 						list.Add (it);
 					}

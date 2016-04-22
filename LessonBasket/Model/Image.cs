@@ -4,8 +4,9 @@ namespace LessonBasket
 {
 	public class Image
 	{
-		public string url{ get; set;}
-		public string title{ get; set;}
+		public string Url{ get; set; }
+
+		public string Title{ get; set; }
 
 		public Image ()
 		{

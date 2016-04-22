@@ -51,7 +51,7 @@ namespace LessonBasketDemo
 			position = Intent.GetIntExtra ("index", 0);
 			//catch exception
 			try {
-				screens = await LessonUtil.GetScreensByLesson (position + 1);
+				screens = await LessonUtil.GetScreensByLessonAsync (position + 1);
 			} catch (Exception ex) {
 				DialogFactory.ToastDialog (this, "Data Error", "Data error,please try again later!", 4);
 			}
@@ -107,7 +107,7 @@ namespace LessonBasketDemo
 			//get screen
 			screen = screens [currentScreen];
 			if (screen != null) {
-				switch (screen.type) {
+				switch (screen.Type) {
 
 				case "audio_text":
 					showAudioTextFragment ();
@@ -267,7 +267,7 @@ namespace LessonBasketDemo
 		{
 			//Every time a next or previous button is clicked, the answer set in that screen is saved
 			String answer = "";
-			switch (screen.type) {
+			switch (screen.Type) {
 
 			case "audio_text":
 				

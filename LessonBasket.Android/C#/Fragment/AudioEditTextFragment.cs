@@ -44,10 +44,10 @@ namespace LessonBasketDemo
 			iv2 = view.FindViewById<ImageView> (Resource.Id.imageView2);
 			subtxt1 = view.FindViewById<TextView> (Resource.Id.subTxt1);
 			subtxt2 = view.FindViewById<TextView> (Resource.Id.subTxt2);
-			Utils.setImageView (iv1, images [0].url);
-			subtxt1.Text = images [0].title;
-			Utils.setImageView (iv2, images [1].url);
-			subtxt2.Text = images [1].title;
+			Utils.setImageView (iv1, images [0].Url);
+			subtxt1.Text = images [0].Title;
+			Utils.setImageView (iv2, images [1].Url);
+			subtxt2.Text = images [1].Title;
 			Utils.setAndPlayMusic (Activity, view, audioUrl, QuestionnairActivity.handler, mp);
 			return view;
 		}
@@ -56,10 +56,10 @@ namespace LessonBasketDemo
 		public static AudioEditTextFragment NewInstance (Screen screen)
 		{
 			var audioEditTextFragment = new AudioEditTextFragment{ Arguments = new Bundle () };
-			audioEditTextFragment.Arguments.PutString ("text", screen.text);
+			audioEditTextFragment.Arguments.PutString ("text", screen.Text);
 			audioEditTextFragment.Arguments.PutString ("audio_url", screen.audio_url);
 			if (screen != null) {
-				images = new List<LessonBasket.Image> (screen.images);
+				images = new List<LessonBasket.Image> (screen.Images);
 			}
 			return audioEditTextFragment;
 		}

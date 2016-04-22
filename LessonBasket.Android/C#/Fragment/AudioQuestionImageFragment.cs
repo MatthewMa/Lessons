@@ -40,7 +40,7 @@ namespace LessonBasketDemo
 			var view = inflater.Inflate (Resource.Layout.fragment_audioquestionimage, container, false);
 			view.FindViewById<TextView> (Resource.Id.questionTxt).Text = text;
 			iv = view.FindViewById<ImageView> (Resource.Id.imageView1);
-			Utils.setImageView (iv, images [0].url);
+			Utils.setImageView (iv, images [0].Url);
 			populateChoices (view);
 			Utils.setAndPlayMusic (Activity, view, audioUrl, QuestionnairActivity.handler, mp);
 			return view;
@@ -55,7 +55,7 @@ namespace LessonBasketDemo
 			for (int i = 0; i < options.Count; i++) {
 				RadioButton rdBtn = new RadioButton (Application.Context);
 				rdBtn.Id = (i);
-				rdBtn.Text = options [i].title;
+				rdBtn.Text = options [i].Title;
 				rdBtn.Gravity = GravityFlags.Center;
 				choicesRadioGroup.AddView (rdBtn);
 			}
@@ -66,10 +66,10 @@ namespace LessonBasketDemo
 		public static AudioQuestionImageFragment NewInstance (Screen screen)
 		{
 			var audioQuestionImageFrag = new AudioQuestionImageFragment{ Arguments = new Bundle () };
-			audioQuestionImageFrag.Arguments.PutString ("question", screen.question);
+			audioQuestionImageFrag.Arguments.PutString ("question", screen.Question);
 			audioQuestionImageFrag.Arguments.PutString ("audio_url", screen.audio_url);
-			options = new List<LessonBasket.Option> (screen.options);
-			images = new List<LessonBasket.Image> (screen.images);
+			options = new List<LessonBasket.Option> (screen.Options);
+			images = new List<LessonBasket.Image> (screen.Images);
 			return audioQuestionImageFrag;
 		}
 

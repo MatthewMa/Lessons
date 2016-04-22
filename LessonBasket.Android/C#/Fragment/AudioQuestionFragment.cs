@@ -47,7 +47,7 @@ namespace LessonBasketDemo
 				if (option != null) {
 					RadioButton rdBtn = new RadioButton (Application.Context);
 					rdBtn.Id = (i);
-					rdBtn.Text = option.title;
+					rdBtn.Text = option.Title;
 					choicesRadioGroup.AddView (rdBtn);
 				}
 			}		
@@ -56,10 +56,10 @@ namespace LessonBasketDemo
 		public static AudioQuestionFragment NewInstance (Screen screen)
 		{
 			var audioQuestionFrag = new AudioQuestionFragment{ Arguments = new Bundle () };
-			audioQuestionFrag.Arguments.PutString ("question", screen.question);
+			audioQuestionFrag.Arguments.PutString ("question", screen.Question);
 			audioQuestionFrag.Arguments.PutString ("audio_url", screen.audio_url);
 			if (screen != null) {
-				options = new List<LessonBasket.Option> (screen.options);
+				options = new List<LessonBasket.Option> (screen.Options);
 			}
 			return audioQuestionFrag;
 		}

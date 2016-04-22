@@ -184,7 +184,7 @@ namespace LessonBasketDemo
 					currentOnlineVideoItem = onlinevideoItems [currentPosition];
 					//query
 					try {
-						screen = await LessonUtil.GetScreenByPosition (currentPosition + 1, 0);
+						screen = await LessonUtil.GetScreenByPositionAsync (currentPosition + 1, 0);
 					} catch (Exception ex) {
 						DialogFactory.ToastDialog (this, "Data Error", "Data error,please try again later!", 4);
 					}
@@ -436,7 +436,7 @@ namespace LessonBasketDemo
 				//go to server 
 
 				try {
-					screen = await LessonUtil.GetScreenByPosition (currentPosition + 1, 0);
+					screen = await LessonUtil.GetScreenByPositionAsync (currentPosition + 1, 0);
 				} catch (Exception ex) {
 					DialogFactory.ToastDialog (this, "Data Error", "Data error, please try again!", 4);
 				}
