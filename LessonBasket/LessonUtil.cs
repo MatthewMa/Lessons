@@ -15,6 +15,10 @@ namespace LessonBasket
 
 		private static string SCREENS_URL = "screens/";
 
+		private static string OPTIONS_URL="options/";
+
+		private static string IMAGES_URL="images/";
+
 		private static string NEXT_SCREEN_URL = "screens/nextscreen/";
 
 		private static string POSITION_SCREEN_URL = "screens/position/";
@@ -90,8 +94,8 @@ namespace LessonBasket
 				screenArray = JArray.Parse(jsonDoc.ToString());
 
 				foreach (JObject screenJson in screenArray){  
-					optionList = await GetOptionsByUrlAsync (screenJson["optionsUrl"].ToString());
-					imageList = await GetImagesByUrl (screenJson["imagesUrl"].ToString());
+					optionList = await GetOptionsByScreenAsync (lessonId, screenJson["id"].ToString());
+					imageList = await GetImagesByScreenAsync (lessonId, screenJson["id"].ToString());
 					screenJson ["options"] = JToken.FromObject (optionList);
 					screenJson ["images"] = JToken.FromObject (imageList);
 					screenList.Add(JsonConvert.DeserializeObject<Screen>(screenJson.ToString()));
@@ -162,10 +166,10 @@ namespace LessonBasket
 		}
 
 
-		public static async Task<IList<Option>> GetOptionsByUrlAsync (string optionUrl){
+		public static async Task<IList<Option>> GetOptionsByScreenAsync (int lessonId, string screenId){
 			IList<Option> optionList;
 
-			JsonValue jsonDoc = await MakeServerRequest (optionUrl);
+			JsonValue jsonDoc = await MakeServerRequest (LESSONS_URL + lessonId + "/" + SCREENS_URL + screenId + "/" + OPTIONS_URL);
 
 			try{
 				JArray optionArray = JArray.Parse(jsonDoc.ToString());
@@ -177,13 +181,17 @@ namespace LessonBasket
 			return optionList;
 		}
 
-		public static async Task<IList<Image>> GetImagesByUrl (string imageUrl){
+		public static async Task<IList<Image>> GetImagesByScreenAsync (int lessonId, string screenId){
 			IList<Image> imageList;
 
-			JsonValue jsonDoc = await MakeServerRequest (imageUrl);
-			JArray imageArray = JArray.Parse(jsonDoc.ToString());
-			imageList = JsonConvert.DeserializeObject<IList<Image>>(imageArray.ToString());
+			JsonValue jsonDoc = await MakeServerRequest (LESSONS_URL + lessonId + "/" + IMAGES_URL + screenId + "/" + OPTIONS_URL);
 
+			try{
+				JArray imageArray = JArray.Parse(jsonDoc.ToString());
+				imageList = JsonConvert.DeserializeObject<IList<Image>>(imageArray.ToString());
+			}catch(JsonSerializationException){
+				throw new JsonSerializationException ("Json couldn't be serialized. " + jsonDoc);
+			}
 			return imageList;
 		}
 
