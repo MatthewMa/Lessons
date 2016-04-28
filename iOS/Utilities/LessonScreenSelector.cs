@@ -15,7 +15,7 @@ namespace LessonBasket.iOS
 
             UIViewController result = null;
 
-            switch (screens[index].type)
+            switch (screens[index].Type)
             {
                 case "video":
                     result = new LessonScreenVideoViewController(screens, index);

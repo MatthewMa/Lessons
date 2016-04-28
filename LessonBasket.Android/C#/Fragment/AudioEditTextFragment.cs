@@ -57,7 +57,7 @@ namespace LessonBasketDemo
 		{
 			var audioEditTextFragment = new AudioEditTextFragment{ Arguments = new Bundle () };
 			audioEditTextFragment.Arguments.PutString ("text", screen.Text);
-			audioEditTextFragment.Arguments.PutString ("audio_url", screen.audio_url);
+			audioEditTextFragment.Arguments.PutString ("audio_url", screen.AudioUrl);
 			if (screen != null) {
 				images = new List<LessonBasket.Image> (screen.Images);
 			}

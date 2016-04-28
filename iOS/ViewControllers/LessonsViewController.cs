@@ -27,9 +27,9 @@ namespace LessonBasket.iOS
 
             #region Hardcoded
             var lesson1 = new Lesson();
-            lesson1.title = "Clay Debray & the Muskrat";
+            lesson1.Title = "Clay Debray & the Muskrat";
             var lesson2 = new Lesson();
-            lesson2.title = "Jason Horse, Cree Soccer";
+            lesson2.Title = "Jason Horse, Cree Soccer";
 
             var items = new List<Tuple<Lesson, bool>>
             {
@@ -79,17 +79,17 @@ namespace LessonBasket.iOS
                 {
                     new Screen
                     {
-                        type = "audio_recorder", 
+                        Type = "audio_recorder", 
                     },
                     new Screen
                     {
-                        type = "video",
-                        video_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
+                        Type = "video",
+						VideoUrl = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/54/604Billy%20Int%202.mp4",
                     },
                     new Screen
                     {
-                        type = "audio_question",
-                        audio_url = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
+                        Type = "audio_question",
+						AudioUrl = "https://www.lessonbasket.com/desktopmodules/lessonbasket/projects/24/55/70588221.7831J%20Horse%20Q1%20.mp3",
 //                        options = new List<string>
 //                        {
 //                            "Thunder Horton's",
@@ -131,7 +131,7 @@ namespace LessonBasket.iOS
                 cell.Accessory = UITableViewCellAccessory.Checkmark;
             }
 
-            cell.TextLabel.Text = Items[indexPath.Row].Item1.title;
+            cell.TextLabel.Text = Items[indexPath.Row].Item1.Title;
 
             return cell;
         }

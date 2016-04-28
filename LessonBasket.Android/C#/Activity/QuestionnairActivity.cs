@@ -26,7 +26,7 @@ namespace LessonBasketDemo
 		private Fragment fragment;
 		private Button btn_submit;
 		private ImageView iv_vision;
-		private List<Screen> screens;
+		private IList<Screen> screens;
 		private Screen screen;
 		public static Handler handler = new Handler ();
 		private LinearLayout ll_loading;

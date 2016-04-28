@@ -22,7 +22,7 @@ namespace LessonBasket.iOS
 
             View.BackgroundColor = UIColor.White;
 
-            var player = new AVPlayer(NSUrl.FromString(Screens[Index].audio_url));
+			var player = new AVPlayer(NSUrl.FromString(Screens[Index].AudioUrl));
             var playerViewController = new AVPlayerViewController
             {
                 Player = player,      

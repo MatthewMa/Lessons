@@ -20,7 +20,7 @@ namespace LessonBasket.iOS
 
             View.BackgroundColor = UIColor.White;
 
-            var player = new AVPlayer(NSUrl.FromString(Screens[Index].video_url));
+            var player = new AVPlayer(NSUrl.FromString(Screens[Index].VideoUrl));
             var playerViewController = new AVPlayerViewController
             {
                 Player = player,      

@@ -38,12 +38,14 @@ namespace LessonBasket
 					}
 				}
 			}catch (WebException e){
+				if(e.Response==null)
+					throw new WebException ("Error connecting to the server: " + url +" Possible Internet problems");
+
 				throw new WebException ("Error connecting to the server: " + url +" Status code: " +((HttpWebResponse)e.Response).StatusCode);
 			}
 			return jsonDoc;
 
 		}
-
 
 		/// <summary>Get the lesson list.
 		/// <para>Returns a list of lessons</para>
@@ -82,24 +84,16 @@ namespace LessonBasket
 		/// <summary>
 		/// Get a Screen list by lesson
 		/// </summary>
-		public static async Task<List<Screen>> GetScreensByLessonAsync (int lessonId){
+		public static async Task<IList<Screen>> GetScreensByLessonAsync (int lessonId){
 
-			List<Screen> screenList = new List<Screen>();
+			IList<Screen> screenList;
 			JArray screenArray;
 			IList<Option> optionList = new List<Option>();
 			IList<Image> imageList = new List<Image>();
 			try
 			{
 				JsonValue jsonDoc = await MakeServerRequest (LESSONS_URL + lessonId + "/" + SCREENS_URL);
-				screenArray = JArray.Parse(jsonDoc.ToString());
-
-				foreach (JObject screenJson in screenArray){  
-					optionList = await GetOptionsByScreenAsync (lessonId, screenJson["id"].ToString());
-					imageList = await GetImagesByScreenAsync (lessonId, screenJson["id"].ToString());
-					screenJson ["options"] = JToken.FromObject (optionList);
-					screenJson ["images"] = JToken.FromObject (imageList);
-					screenList.Add(JsonConvert.DeserializeObject<Screen>(screenJson.ToString()));
-				}
+				screenList = JsonConvert.DeserializeObject<IList<Screen>>(jsonDoc.ToString());
 			}
 			catch(JsonSerializationException)
 			{
@@ -128,7 +122,7 @@ namespace LessonBasket
 			return screen;
 		}
 
-		public static async Task<Screen> GetScreenByPosition(int lessonId, int position){
+		public static async Task<Screen> GetScreenByPositionAsync (int lessonId, int position){
 			Screen screen;
 			JObject screenJson;
 
@@ -165,7 +159,6 @@ namespace LessonBasket
 			return screen;
 		}
 
-
 		public static async Task<IList<Option>> GetOptionsByScreenAsync (int lessonId, string screenId){
 			IList<Option> optionList;
 
@@ -184,18 +177,12 @@ namespace LessonBasket
 		public static async Task<IList<Image>> GetImagesByScreenAsync (int lessonId, string screenId){
 			IList<Image> imageList;
 
-			JsonValue jsonDoc = await MakeServerRequest (LESSONS_URL + lessonId + "/" + IMAGES_URL + screenId + "/" + OPTIONS_URL);
+			JsonValue jsonDoc = await MakeServerRequest (LESSONS_URL + lessonId + "/" + SCREENS_URL + screenId + "/" + IMAGES_URL);
+			JArray imageArray = JArray.Parse(jsonDoc.ToString());
+			imageList = JsonConvert.DeserializeObject<IList<Image>>(imageArray.ToString());
 
-			try{
-				JArray imageArray = JArray.Parse(jsonDoc.ToString());
-				imageList = JsonConvert.DeserializeObject<IList<Image>>(imageArray.ToString());
-			}catch(JsonSerializationException){
-				throw new JsonSerializationException ("Json couldn't be serialized. " + jsonDoc);
-			}
 			return imageList;
 		}
-
-
 
 
 

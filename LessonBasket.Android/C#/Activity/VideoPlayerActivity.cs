@@ -189,7 +189,7 @@ namespace LessonBasketDemo
 						DialogFactory.ToastDialog (this, "Data Error", "Data error,please try again later!", 4);
 					}
 					if (screen != null) {
-						vv.SetVideoURI (Android.Net.Uri.Parse (Utils.EncodeURL (screen.video_url)));
+						vv.SetVideoURI (Android.Net.Uri.Parse (Utils.EncodeURL (screen.VideoUrl)));
 					}
 
 				}
@@ -440,7 +440,7 @@ namespace LessonBasketDemo
 				} catch (Exception ex) {
 					DialogFactory.ToastDialog (this, "Data Error", "Data error, please try again!", 4);
 				}
-				vv.SetVideoURI (Android.Net.Uri.Parse (Utils.EncodeURL (screen.video_url)));
+				vv.SetVideoURI (Android.Net.Uri.Parse (Utils.EncodeURL (screen.VideoUrl)));
 				btn_next.Enabled = (currentPosition != onlinevideoItems.Count - 1);
 			} else {
 				if (videoItems == null || videoItems.Count == 0 || currentPosition == -1) {

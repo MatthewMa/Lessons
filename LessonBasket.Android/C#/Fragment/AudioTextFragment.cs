@@ -45,7 +45,7 @@ namespace LessonBasketDemo
 		{
 			var audioTextFrag = new AudioTextFragment{ Arguments = new Bundle () };
 			audioTextFrag.Arguments.PutString ("text", screen.Text);
-			audioTextFrag.Arguments.PutString ("audio_url", screen.audio_url);
+			audioTextFrag.Arguments.PutString ("audio_url", screen.AudioUrl);
 			return audioTextFrag;
 		}
 

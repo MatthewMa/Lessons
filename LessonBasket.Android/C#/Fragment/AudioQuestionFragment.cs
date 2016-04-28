@@ -57,7 +57,7 @@ namespace LessonBasketDemo
 		{
 			var audioQuestionFrag = new AudioQuestionFragment{ Arguments = new Bundle () };
 			audioQuestionFrag.Arguments.PutString ("question", screen.Question);
-			audioQuestionFrag.Arguments.PutString ("audio_url", screen.audio_url);
+			audioQuestionFrag.Arguments.PutString ("audio_url", screen.AudioUrl);
 			if (screen != null) {
 				options = new List<LessonBasket.Option> (screen.Options);
 			}
